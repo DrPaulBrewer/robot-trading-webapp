@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="html5csv/external-free/jqplot/jquery.jqplot.css" />
+</head>
+<body>
+<h1>Robot Trading Market</h2>
+<h2>Inputs</h2>
+<div id="toolDiv">
+ <p>Aggregate Buyers Values:
+ <input type="text" id="values" name="values" size="60" value="100 95 90 85 80 75 70 60 50 40 30 20 10">
+ </p>
+ <p>Aggregate Sellers Costs:
+ <input type="text" id="costs" name="costs" size="60" value="10 20 30 40 50 60 70 80 90 100">
+ </p>
+ <p>Number of Buyers:
+   <input type="number" id="numberOfBuyers" value="5">
+ </p>
+ <p>Number of Sellers:
+   <input type="number" id="numberOfSellers" value="5">
+ </p>
+ <p>Number of Periods:
+   <input type="number" id="periods" value="10">
+ </p>
+ <p>Period Duration (sec):
+   <input type="number" id="periodDuration" value="600">
+ </p>
+ <p>Individual Buyer Poisson Arrival Rate (bids/sec per agent): 
+   <input type="number" id="buyerRate" value="0.2">
+ </p>
+ <p>Individual Seller Poisson Arrival Rate (asks/sec per agent):
+   <input type="number" id="sellerRate" value="0.2">
+ </p>
+</div>
+<button id="runButton">Run</button>
+<p id="runError" color="red"></p>
+<h2>Outputs</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<script src="html5csv/external-free/jqplot/jquery.jqplot.min.js"></script>
+<script src="html5csv/html5csv.js"></script>
+<script src="bundle.js"></script>
+</body>
+</html>
