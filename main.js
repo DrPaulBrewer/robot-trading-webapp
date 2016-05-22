@@ -90,7 +90,7 @@ function main(){
 	setTimeout(activateDownloadButton, 1000, sim);
     }; 
 
-    var mysim = SMRS.runSimulation(config, onDone, onPeriod); 
+    window.sim = SMRS.runSimulation(config, onDone, onPeriod); 
 }
 
 
