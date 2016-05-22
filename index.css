@@ -1,3 +1,6 @@
+address { 
+    display: inline;
+} 
 label {
     font-size: x-large;
 }
