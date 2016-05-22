@@ -8,9 +8,9 @@ function main(){
     $('#downloadButton').remove();
     // set up and run new simulation
     try {
-	var buySellBookLimit = +($('#buySellBookLimit').val());
-	var buyerImprovementRuleLevel = +($('#buyerImprovementRuleLevel').val());
-	var sellerImprovementRuleLevel = +($('#sellerImprovementRuleLevel').val());
+	var buySellBookLimit = +($('#buySellBookLimit').val()) || 0;
+	var buyerImprovementRuleLevel = +($('#buyerImprovementRuleLevel').val()) || 0;
+	var sellerImprovementRuleLevel = +($('#sellerImprovementRuleLevel').val()) || 0;
 	var booklimit = Math.max(buySellBookLimit, buyerImprovementRuleLevel, sellerImprovementRuleLevel);
 	config = {
 	    "H": 200, 
