@@ -2,35 +2,50 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="index.css" />
 <link rel="stylesheet" type="text/css" href="html5csv/external-free/jqplot/jquery.jqplot.css" />
 </head>
 <body>
-<h1>Robot Trading Market</h2>
+<h1>Robot Trading Demo</h1>
+<i>by Economic &amp; Financial Technology Consulting LLC</i>
 <h2>Inputs</h2>
 <div id="toolDiv">
- <p>Aggregate Buyers Values:
- <input type="text" id="values" name="values" size="60" value="100 95 90 85 80 75 70 60 50 40 30 20 10">
+ <p><label>Aggregate Buyers Values:<br/>
+ <textarea id="values">
+100 95 90 85 80 75 70 60 50 40 30 20 10
+ </textarea>
+</label>
  </p>
- <p>Aggregate Sellers Costs:
- <input type="text" id="costs" name="costs" size="60" value="10 20 30 40 50 60 70 80 90 100">
+ <p><label>Aggregate Sellers Costs:<br/>
+ <textarea id="costs">
+10 20 30 40 50 60 70 80 90 100
+ </textarea>
+</label>
  </p>
- <p>Number of Buyers:
+ <p><label>Number of Buyers:<br/>
    <input type="number" id="numberOfBuyers" value="5">
+</label>
  </p>
- <p>Number of Sellers:
+ <p><label>Number of Sellers:<br/>
    <input type="number" id="numberOfSellers" value="5">
+</label>
  </p>
- <p>Number of Periods:
+ <p><label>Number of Periods:<br/>
    <input type="number" id="periods" value="10">
+</label>
  </p>
- <p>Period Duration (sec):
+ <p><label>Period Duration (sec):<br/>
    <input type="number" id="periodDuration" value="600">
+</label>
  </p>
- <p>Individual Buyer Poisson Arrival Rate (bids/sec per agent): 
+ <p><label>Individual Buyer Poisson Arrival Rate (bids/sec per agent): <br/>
    <input type="number" id="buyerRate" value="0.2">
+</label>
  </p>
- <p>Individual Seller Poisson Arrival Rate (asks/sec per agent):
+ <p><label>Individual Seller Poisson Arrival Rate (asks/sec per agent):<br/>
    <input type="number" id="sellerRate" value="0.2">
+</label>
  </p>
 </div>
 <button id="runButton">Run</button>

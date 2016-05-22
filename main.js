@@ -5,6 +5,7 @@ function main(){
     // clear any leftovers
     $('.jqplot-target').remove();
     $('#tradingData').remove();
+    $('#downloadButton').remove();
     // set up and run new simulation
     try {
 	config = {
@@ -61,9 +62,21 @@ function main(){
 	 .go()
 	);
     };
+
+    var activateDownloadButton = function(sim){
+	$('<button id="downloadButton">Download trades.csv file</button>').insertAfter("#tradingData");
+	$('#downloadButton').click(function(){
+	    (CSV
+	     .begin(sim.logs.trade.data)
+	     .download("trades.csv")
+	     .go()
+	    );
+	});
+    };
     
     var onDone = function(e,sim){
-	setTimeout(makeTradeTable, 300, sim);
+	setTimeout(makeTradeTable, 500, sim);
+	setTimeout(activateDownloadButton, 1000, sim);
     }; 
 
     var mysim = SMRS.runSimulation(config, onDone, onPeriod); 
