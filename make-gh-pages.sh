@@ -11,8 +11,12 @@ git clone http://github.com/drpaulbrewer/html5csv
 # Delete the code below and substitue *your* deployment code here
 # The code that is below is gh-pages specific
 # and only works on the the main repository
-# This portion inspired by Gergely Nemeth's article on medium.com
+# This portion inspired by various articles
+# Gergely Nemeth's article on medium.com
 # https://medium.com/@nthgergo/publishing-gh-pages-with-travis-ci-53a8270e87db#.il0d4odzd
+# Janik Vonrotz's article is similar, but actually gets the token format correct
+# https://janikvonrotz.ch/2015/11/11/autodeploy-to-github-pages-with-travisci/
+# The required URL is username:secrettoken@github.com/..., not merely secrettoken@github.com
 git init 
 git config user.name "Travis-CI"
 git config user.email "travis@eaftc.com"
