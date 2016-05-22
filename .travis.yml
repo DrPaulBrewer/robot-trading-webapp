@@ -8,7 +8,7 @@ script:
   - npm run make-gh-pages
 env:
   global:
-    - GH_REF: github.com/drpaulbrewer/robot-trading-webapp
+    - GH_REF: github.com/DrPaulBrewer/robot-trading-webapp
     - secure: >-
         Y/LmvXUSOjaneArIG0unUckuNt1hEQzqoykNuzzluNPD1/4k9RojHEoWuYnLw00VIGqVWaXf6Grdk4kanmVUVobBxa76XV594WfbZxMpAYQ3w40kQIyNiPsreR1ilQBnmqfhH0Uu4nZt0luueYUkScgPw4s9gaJeI09W9wtk5hH4KiXRAq+6xbjGnB2nPo5EeZKulblvXO9i9dINNKnld0LScwNFRIThkgLpJ0+Ms9dxOcgWmrzpNR7QburqHIhluwSmVFYzU2jVZPyqV5xlBmG6c6a2Hz4Kjofu4S9TW0cOJGw+Ffe7MSiUFqLjLLgy/lrdN+muxX6w9ohnyQDokZjUQUBCq2mCzUhj5RzPZ75bmX35shpZwQgSCg05mfOGzrX3FcwTO68AFfDEfmEp+gO7BW960v6V9c3ctTXVjCh1to9sAaNWZ5Rj4Q0Zzhp7b9BbeXS8YRUyOXA3TbOUcgrpLiadKRbN3V9YVGHO5gKasJtOiu7U8tFcgd6VS+jbIYx0NMISsRucCgZNny7NgoAg8EGRgTNgbYz1W1a0bo3ZpDitt+mSpZETjLP4hBCt8JRHBUAjkfHaoy9xdVAKCINwG7yqToObAXLTlk56Sr+i+78d1RuCAabb1F10+zLBcxk2l6S9DpvsYhmZvS4Fn54ZOYYRs2DTYbWmmE0jk3k=
 
