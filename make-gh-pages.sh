@@ -18,7 +18,6 @@ git config user.name "Travis-CI"
 git config user.email "travis@eaftc.com"
 git add .
 git commit -m "Autodeploy to Github Pages"
-echo "https://${GH_TOKEN}@${GH_REF}"
-git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages >/dev/null 2>&1
 
 
