@@ -7,6 +7,7 @@ cp index.html ./build/
 cp index.css ./build/
 cd ./build
 git clone http://github.com/drpaulbrewer/html5csv
+rm -rf html5csv/.git
 # The finished website is in ./build
 # Delete the code below and substitue *your* deployment code here
 # The code that is below is gh-pages specific
