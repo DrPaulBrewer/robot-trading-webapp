@@ -8,6 +8,10 @@ function main(){
     $('#downloadButton').remove();
     // set up and run new simulation
     try {
+	var buySellBookLimit = +($('#buySellBookLimit').val());
+	var buyerImprovementRuleLevel = +($('#buyerImprovementRuleLevel').val());
+	var sellerImprovementRuleLevel = +($('#sellerImprovementRuleLevel').val());
+	var booklimit = Math.max(buySellBookLimit, buyerImprovementRuleLevel, sellerImprovementRuleLevel);
 	config = {
 	    "H": 200, 
 	    "L":1,
@@ -18,7 +22,14 @@ function main(){
 	    "numberOfSellers": +($('#numberOfSellers').val()),
 	    "buyerRate": +($('#buyerRate').val()),
 	    "sellerRate": +($('#sellerRate').val()),
-	    "periodDuration": +($('#periodDuration').val())
+	    "periodDuration": +($('#periodDuration').val()),
+	    "xMarket": {
+		bookfixed: 1,
+		booklimit: booklimit || 10,
+		buyImprove: (buyerImprovementRuleLevel>0)? {level: buyerImprovementRuleLevel} : 0,
+		sellImprove: (sellerImprovementRuleLevel>0)? {level: sellerImprovementRuleLevel} : 0,
+		buySellBookLimit: buySellBookLimit
+	    }
 	};
     } catch(e){
 	console.log(e);

@@ -47,6 +47,21 @@
    <input type="number" id="sellerRate" value="0.2">
 </label>
  </p>
+ <p><label>Buyer Improvement rule <br/>
+(0 = disable, N requires new bid to beat old best Nth bid)<br/>
+<input type="number" id="buyerImprovementRuleLevel" value="0">
+</label>
+</p>
+ <p><label>Seller Improvement rule <br/>
+(0 = disable, N requires new bid to beat old best Nth bid)<br/>
+<input type="number" id="buyerImprovementRuleLevel" value="0">
+</label>
+</p>
+<p><label>Buy/Sell Book Limit <br/>
+(0 = no limit; truncates buy book and sell book after each trade to N orders each side)<br/>
+<input type="number" id="buySellBookLimit" value="0">
+</label>
+</p>
 </div>
 <button id="runButton">Run</button>
 <p id="runError" color="red"></p>
