@@ -26,8 +26,8 @@ function main(){
 	    "xMarket": {
 		bookfixed: 1,
 		booklimit: booklimit || 10,
-		buyImprove: (buyerImprovementRuleLevel>0)? {level: buyerImprovementRuleLevel} : 0,
-		sellImprove: (sellerImprovementRuleLevel>0)? {level: sellerImprovementRuleLevel} : 0,
+		buyImprove: (buyerImprovementRuleLevel>0)? {level: (buyerImprovementRuleLevel-1)} : 0,
+		sellImprove: (sellerImprovementRuleLevel>0)? {level: (sellerImprovementRuleLevel-1)} : 0,
 		buySellBookLimit: buySellBookLimit
 	    }
 	};
