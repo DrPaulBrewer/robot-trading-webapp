@@ -4,7 +4,7 @@
   "description": "website generator for robot trading single page webapp",
   "main": " ",
   "dependencies": {
-    "single-market-robot-simulator": "^0.11.0"
+    "single-market-robot-simulator": "^0.12.0"
   },
   "devDependencies": {},
   "scripts": {
