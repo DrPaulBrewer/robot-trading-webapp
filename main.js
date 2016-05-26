@@ -54,7 +54,7 @@ function main(){
 		    show:true,
 		    label: 'price',
 		    min:0,
-		    max: Math.max.apply(Math,config.buyerValues)
+		    max: 200
 		}
 	    }
 	};
