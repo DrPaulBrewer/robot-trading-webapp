@@ -12,6 +12,7 @@ function main(){
 	var buyerImprovementRuleLevel = +($('#buyerImprovementRuleLevel').val()) || 0;
 	var sellerImprovementRuleLevel = +($('#sellerImprovementRuleLevel').val()) || 0;
 	var booklimit = Math.max(buySellBookLimit, buyerImprovementRuleLevel, sellerImprovementRuleLevel);
+	var resetAfterEachTrade = +($('#resetAfterEachTrade').val());
 	config = {
 	    "H": 200, 
 	    "L":1,
@@ -23,12 +24,16 @@ function main(){
 	    "buyerRate": +($('#buyerRate').val()),
 	    "sellerRate": +($('#sellerRate').val()),
 	    "periodDuration": +($('#periodDuration').val()),
+	    "integer": +($('#integer').val()),
+	    "keepPreviousOrders": +($('#keepPreviousOrders').val()),
+	    "ignoreBudgetConstraint": +($('#ignoreBudgetConstraint').val()),
 	    "xMarket": {
 		bookfixed: 1,
 		booklimit: booklimit || 10,
 		buyImprove: (buyerImprovementRuleLevel>0)? {level: (buyerImprovementRuleLevel-1)} : 0,
 		sellImprove: (sellerImprovementRuleLevel>0)? {level: (sellerImprovementRuleLevel-1)} : 0,
-		buySellBookLimit: buySellBookLimit
+		buySellBookLimit: buySellBookLimit,
+		resetAfterEachTrade: resetAfterEachTrade
 	    }
 	};
     } catch(e){
