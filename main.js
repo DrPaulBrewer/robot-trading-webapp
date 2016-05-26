@@ -1,5 +1,23 @@
 var SMRS = require('single-market-robot-simulator');
 
+function getNumberArray(jqsel){
+    return $(jqsel).val().split(" ").map(function(s){ return +s; });
+}
+
+function redrawStepChart(){
+    var buyerValues = getNumberArray('#costs');
+    var sellerCosts = getNumberArray('#values');
+    $('#aggregateSupplyDemandDiv').html('');
+    $.jqplot("aggregateSupplyDemandDiv", 
+	     [[buyerValues],[sellerCosts]],
+	     { seriesDefaults:{
+		 step: true
+	     }
+	     }
+	    );
+}
+
+
 function main(){
     var config = {};
     // clear any leftovers
@@ -16,8 +34,8 @@ function main(){
 	config = {
 	    "H": 200, 
 	    "L":1,
-	    "sellerCosts": $('#costs').val().split(" ").map(function(s){return +s;}),
-	    "buyerValues": $('#values').val().split(" ").map(function(s){return +s;}),
+	    "sellerCosts": getNumberArray('#costs'),
+	    "buyerValues": getNumberArray('#values'),
 	    "periods": +($('#periods').val()),
 	    "numberOfBuyers": +($('#numberOfBuyers').val()),
 	    "numberOfSellers": +($('#numberOfSellers').val()),
@@ -100,3 +118,5 @@ function main(){
 
 
 $('#runButton').click(main);
+$('#costs').on('keyup', $.debounce(2000, redrawStepChart()));
+$('#values').on('keyup', $.debounce(2000, redrawStepChart()));

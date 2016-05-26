@@ -14,3 +14,7 @@ textarea {
     height: 50px;
     font-size: xx-large;
 }
+#aggregateSupplyDemandDiv {
+    height: 400px;
+    width: 300px;
+}
