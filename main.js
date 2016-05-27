@@ -15,7 +15,12 @@ function debounce(a, b){
     
 
 function getNumberArray(jqsel){
-    return $(jqsel).val().split(" ").map(function(s){ return +s; });
+    return ($(jqsel)
+	    .val()
+	    .split(/\s+/)
+	    .map(function(s){ return +s; })
+	    .filter(function(n){ return n>0; })
+	    );
 }
 
 function redrawStepChart(){
