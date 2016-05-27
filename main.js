@@ -1,5 +1,19 @@
 var SMRS = require('single-market-robot-simulator');
 
+function debounce(a, b){
+    var ms = (typeof(a)==='number')? a: b;
+    var func = (typeof(a)==='function')? a: b;
+    var timer;
+    if ((typeof(ms)==='number') && (typeof(func)==='function'))
+	return function(){
+	    clearTimeout(timer);
+	    timer = setTimeout(func, ms);
+	}
+    else 
+	return function(){};
+};
+    
+
 function getNumberArray(jqsel){
     return $(jqsel).val().split(" ").map(function(s){ return +s; });
 }
@@ -9,7 +23,7 @@ function redrawStepChart(){
     var sellerCosts = getNumberArray('#values');
     $('#aggregateSupplyDemandDiv').html('');
     $.jqplot("aggregateSupplyDemandDiv", 
-	     [[buyerValues],[sellerCosts]],
+	     [buyerValues,sellerCosts],
 	     { seriesDefaults:{
 		 step: true
 	     }
@@ -118,5 +132,5 @@ function main(){
 
 
 $('#runButton').click(main);
-$('#costs').on('keyup', $.debounce(2000, redrawStepChart()));
-$('#values').on('keyup', $.debounce(2000, redrawStepChart()));
+$('#costs').on('keyup', debounce(2000, redrawStepChart));
+$('#values').on('keyup', debounce(2000, redrawStepChart));
