@@ -8,10 +8,10 @@ function debounce(a, b){
 	return function(){
 	    clearTimeout(timer);
 	    timer = setTimeout(func, ms);
-	}
+	};
     else 
 	return function(){};
-};
+}
     
 
 function getNumberArray(jqsel){
