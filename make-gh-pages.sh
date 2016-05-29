@@ -11,7 +11,9 @@ rm -rf html5csv/.git
 # The finished website is in ./build
 # Delete the code below and substitue *your* deployment code here
 # The code that is below is gh-pages specific
-# and only works on the the main repository
+# and only works on the the authors github repository
+# If you want to use this in a forked github repository, you
+# will need to set travis ci and a travis ci encrypted token.
 # This portion inspired by various articles
 # Gergely Nemeth's article on medium.com
 # https://medium.com/@nthgergo/publishing-gh-pages-with-travis-ci-53a8270e87db#.il0d4odzd

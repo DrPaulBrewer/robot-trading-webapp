@@ -13,8 +13,30 @@ function debounce(a, b){
 	return function(){};
 }
     
+function sendPositiveFields(formJquerySelector, arrayNames, result, cb){
+    return function(){
+	var result = {};
+	var inputs = $(formJquerySelector).serializeArray();
+	var i,l,thisInput,name,value,positiveValue,positiveArray;
+	for(i=0,l=inputs.length;i<l;++i){
+	    thisInput = inputs[i];
+	    name = thisInput.name;
+	    value = thisInput.value;
+	    if ((name) && (value)){
+		if (arrayNames.indexOf(name)>=0){
+		    result[name] = (value
+				   .split(/\s+/)
+				   .map(function(s){ return +s; })
+				   .filter(function(v){ return v>0; })
+				  );
+		    
+		
+	    }
+	}
+}
 
-function getNumberArray(jqsel){
+
+function getPositiveNumberArray(jqsel){
     return ($(jqsel)
 	    .val()
 	    .split(/\s+/)
@@ -24,8 +46,8 @@ function getNumberArray(jqsel){
 }
 
 function redrawStepChart(){
-    var buyerValues = getNumberArray('#costs');
-    var sellerCosts = getNumberArray('#values');
+    var buyerValues = getPositiveNumberArray('#costs');
+    var sellerCosts = getPositiveNumberArray('#values');
     $('#aggregateSupplyDemandDiv').html('');
     $.jqplot("aggregateSupplyDemandDiv", 
 	     [buyerValues,sellerCosts],
@@ -45,6 +67,25 @@ function main(){
     $('#downloadButton').remove();
     // set up and run new simulation
     try {
+	var inprops = ['buySellBookLimit',
+		       'buyerImproveRuleLevel',
+		       'sellerImprovementRuleLevel',
+		       'resetAfterEachTrade',
+		       'periods',
+		       'numberOfBuyers',
+		       'numberOfSellers',
+		       'buyerRate',
+		       'sellerRate',
+		       'periodDuration',
+		       'integer',
+		       'keepPreviousOrders',
+		       'ignoreBudgetConstraint'];
+	var UI = {};
+	inprops.forEach(function(k){
+	    var v = +($('#'+k).val());
+	    if (v) UI[k] = v;
+	});
+	var 
 	var buySellBookLimit = +($('#buySellBookLimit').val()) || 0;
 	var buyerImprovementRuleLevel = +($('#buyerImprovementRuleLevel').val()) || 0;
 	var sellerImprovementRuleLevel = +($('#sellerImprovementRuleLevel').val()) || 0;
@@ -53,8 +94,8 @@ function main(){
 	config = {
 	    "H": 200, 
 	    "L":1,
-	    "sellerCosts": getNumberArray('#costs'),
-	    "buyerValues": getNumberArray('#values'),
+	    "sellerCosts": getPositiveNumberArray('#costs'),
+	    "buyerValues": getPositiveNumberArray('#values'),
 	    "periods": +($('#periods').val()),
 	    "numberOfBuyers": +($('#numberOfBuyers').val()),
 	    "numberOfSellers": +($('#numberOfSellers').val()),
