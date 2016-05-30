@@ -1,6 +1,6 @@
 {
   "name": "robot-trading-webapp",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "website generator for robot trading single page webapp",
   "main": " ",
   "dependencies": {
