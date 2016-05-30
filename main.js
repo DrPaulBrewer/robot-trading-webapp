@@ -35,7 +35,8 @@ function asPositiveNumberArray(myInput){
 function init(){
     var editorElement = document.getElementById('editor');
     var editorOptions = {
-	schema: require('./configSchema.json')
+	schema: require('./configSchema.json'),
+	startval: require('./examples-highlow.json')
     };
     window.editor = new window.JSONEditor(editorElement, editorOptions);
 }
@@ -131,7 +132,7 @@ function runSimulation(simConfig, slot){
 	(CSV
 	 .begin(sim.logs.trade.data)
 	 .jqplot([
-	     ["tradePlot",
+	     ["resultPlot"+slot,
 	      [["t","price"]],
 	      plotOptions
 	     ]
@@ -158,8 +159,24 @@ function runSimulation(simConfig, slot){
 	$.jqplot("resultPlot"+slot, [sim.logs.ohlc.data], plotOptions);
     };
 
+    var clickCounter = 0;
+    var visualizations = [plotOHLC, plotPriceTimeSeries];
+
+    var draw = function(sim){
+	$('#resultPlot'+slot).html("");
+	$('#resultPlot'+slot).off('click');
+	visualizations[clickCounter](sim);
+	clickCounter = (1+clickCounter)%(visualizations.length);
+	console.log("clickCounter", clickCounter);
+	setTimeout(function(){
+	    $('#resultPlot'+slot).on('click',  function(){
+		draw(sim);
+	    });
+	}, 500);
+    };
+
     var onDone = function(e,sim){
-	plotOHLC(sim);
+	draw(sim);
 	setTimeout(redrawStepChart, 500, sim);
 	// setTimeout(makeTradeTable, 700, sim);
 	// setTimeout(activateDownloadButton, 1000, sim);

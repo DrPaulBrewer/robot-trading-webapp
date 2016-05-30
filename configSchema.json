@@ -2,6 +2,10 @@
     "title": "Robot Trading Comparison",
     "type": "array",
     "format": "tabs",
+    "default": [],
+    "options": {
+	"collapsed": true
+    },
     "items":{
 	"properties": {
 	    "buyerValues": {
