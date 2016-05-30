@@ -1,9 +1,16 @@
+/* Copyright 2016 Paul Brewer, Economic and Financial Technology Consulting LLC */
+/* This file is open source software.  The MIT License applies to this software. */
+
+/* jshint browserify:true,jquery:true,esnext:true,eqeqeq:true,undef:true,lastsemic:true,strict:true,unused:true */
+/* globals CSV:false */
+
 var SMRS = require('single-market-robot-simulator');
 require('json-editor'); // defines window.JSONEditor
 if (!(window.JSONEditor))
     throw new Error("required json-editor not found at window.JSONEditor");
 
 function debounce(a, b){
+    'use strict';
     var ms = (typeof(a)==='number')? a: b;
     var func = (typeof(a)==='function')? a: b;
     var timer;
@@ -17,6 +24,7 @@ function debounce(a, b){
 }
     
 function asPositiveNumberArray(myInput){
+    'use strict';
     if (typeof(myInput)==="string")
 	return (myInput
 		.replace(/,/g," ")
@@ -33,6 +41,7 @@ function asPositiveNumberArray(myInput){
 }
 
 function init(){
+    'use strict';
     var editorElement = document.getElementById('editor');
     var editorOptions = {
 	schema: require('./configSchema.json'),
@@ -42,12 +51,14 @@ function init(){
 }
 
 function main(){
+    'use strict';
     $('.paramPlot').html("");
     $('.resultPlot').html("");
     window.editor.getValue().forEach(runSimulation);
 }
 
 function runSimulation(simConfig, slot){
+    'use strict';
     // clear any leftovers
     $('#paramPlot'+slot).html("");
     $('#resultPlot'+slot).html("");
@@ -182,11 +193,12 @@ function runSimulation(simConfig, slot){
 	// setTimeout(activateDownloadButton, 1000, sim);
     }; 
 
-    var sim = SMRS.runSimulation(config, onDone, onPeriod); 
-    redrawStepChart(sim, slot);
+    var mysim = SMRS.runSimulation(config, onDone, onPeriod); 
+    redrawStepChart(mysim, slot);
 }
 
 $(function(){
+    'use strict';
     init();
 });
 
