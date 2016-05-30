@@ -14,88 +14,61 @@ Economic &amp; Financial Technology Consulting LLC</p>
 <p>License: MIT</p>
 <h2>Inputs</h2>
 <div id="toolDiv">
- <p><label>Aggregate Buyers Values:<br/>
- <textarea id="values">
-100 95 90 85 80 75 70 60 50 40 30 20 10
- </textarea>
-</label>
- </p>
- <p><label>Aggregate Sellers Costs:<br/>
- <textarea id="costs">
-10 20 30 40 50 60 70 80 90 100
- </textarea>
-</label>
- </p>
-<div id="aggregateSupplyDemandDiv">
-</div>
- <p><label>Number of Buyers:<br/>
-   <input type="number" id="numberOfBuyers" value="5">
-</label>
- </p>
- <p><label>Number of Sellers:<br/>
-   <input type="number" id="numberOfSellers" value="5">
-</label>
- </p>
- <p><label>Number of Periods:<br/>
-   <input type="number" id="periods" value="10">
-</label>
- </p>
- <p><label>Period Duration (sec):<br/>
-   <input type="number" id="periodDuration" value="600">
-</label>
- </p>
- <p><label>Individual Buyer Poisson Arrival Rate (bids/sec per agent): <br/>
-   <input type="number" id="buyerRate" value="0.2">
-</label>
- </p>
- <p><label>Individual Seller Poisson Arrival Rate (asks/sec per agent):<br/>
-   <input type="number" id="sellerRate" value="0.2">
-</label>
- </p>
- <p><label>Buyer Improvement rule <br/>
-(0 = disable, rejects new buy orders unless order price exceeds the Nth best bid)<br/>
-<input type="number" id="buyerImprovementRuleLevel" value="0">
-</label>
-</p>
- <p><label>Seller Improvement rule <br/>
-(0 = disable, rejects new sell orders unless order price lower than the Nth best ask)<br/>
-<input type="number" id="sellerImprovementRuleLevel" value="0">
-</label>
-</p>
-<p><label>Buy/Sell Book Limit <br/>
-(0 = unlimited; otherwise, truncates buy book and sell book after each trade to N orders each side)<br/>
-<input type="number" id="buySellBookLimit" value="0">
-</label>
-</p>
-<p><label>Reset market after each trade <br/>
-(0 = keep old orders for next trade; 1 = reset the market, eliminating old orders, after each trade)<br/>
-<input type="number" id="resetAfterEachTrade" value="0">
-</label>
-</p>
-<p><label>Integer prices <br/>
-(0 = decimal prices; 1 = integer prices)<br/>
-<input type="number" id="integer" value="0">
-</label>
-</p>
-<p><label>Multiple orders from each agent <br/>
-(0 = an agent's new orders cancels/replaces old orders by that agent; 1=new orders exist alongside old orders)<br/>
-<input type="number" id="keepPreviousOrders" value="0">
-</label>
-</p>
-<p><label>Ignore Budget Constraints<br/>
-(0 = ZI agent's prices distributed Uniform[0,marginal value] or Uniform[marginal cost, H]; 1 = ZI prices distributed Uniform[0,H] ignoring MC/MV )<br/>
-<input type="number" id="ignoreBudgetConstraint" value="0">
-</label>
-</p>
+  <div id="editor">
+  </div>
 </div>
 <button id="runButton">Run</button>
 <p id="runError" color="red"></p>
 <h2>Outputs</h2>
+<table id="outputTable">
+<tbody>
+<tr>
+<td><div class="paramPlot"  id="paramPlot0"></div></td>
+<td><div class="resultPlot" id="resultPlot0"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot1"></div></td>
+<td><div class="resultPlot" id="resultPlot1"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot2"></div></td>
+<td><div class="resultPlot" id="resultPlot2"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot3"></div></td>
+<td><div class="resultPlot" id="resultPlot3"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot4"></div></td>
+<td><div class="resultPlot" id="resultPlot4"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot5"></div></td>
+<td><div class="resultPlot" id="resultPlot5"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot6"></div></td>
+<td><div class="resultPlot" id="resultPlot6"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot7"></div></td>
+<td><div class="resultPlot" id="resultPlot7"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot8"></div></td>
+<td><div class="resultPlot" id="resultPlot8"></div></td>
+</tr>
+<tr>
+<td><div class="paramPlot"  id="paramPlot9"></div></td>
+<td><div class="resultPlot" id="resultPlot9"></div></td>
+</tr>
+</tbody>
+</table>
 <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script   src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"   integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="   crossorigin="anonymous"></script>
 <script src="html5csv/external-free/jqplot/jquery.jqplot.min.js"></script>
+<script src="html5csv/external-free/jqplot/plugins/jqplot.ohlcRenderer.js"></script>
 <script src="html5csv/html5csv.js"></script>
 <script src="bundle.js"></script>
 </body>
-
 </html>

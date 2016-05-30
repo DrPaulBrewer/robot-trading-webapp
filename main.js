@@ -1,4 +1,7 @@
 var SMRS = require('single-market-robot-simulator');
+require('json-editor'); // defines window.JSONEditor
+if (!(window.JSONEditor))
+    throw new Error("required json-editor not found at window.JSONEditor");
 
 function debounce(a, b){
     var ms = (typeof(a)==='number')? a: b;
@@ -13,140 +16,81 @@ function debounce(a, b){
 	return function(){};
 }
     
-function sendPositiveFields(formJquerySelector, arrayNames, result, cb){
-    return function(){
-	var result = {};
-	var inputs = $(formJquerySelector).serializeArray();
-	var i,l,thisInput,name,value,positiveValue,positiveArray;
-	for(i=0,l=inputs.length;i<l;++i){
-	    thisInput = inputs[i];
-	    name = thisInput.name;
-	    value = thisInput.value;
-	    if ((name) && (value)){
-		if (arrayNames.indexOf(name)>=0){
-		    result[name] = (value
-				   .split(/\s+/)
-				   .map(function(s){ return +s; })
-				   .filter(function(v){ return v>0; })
-				  );
-		    
-		
-	    }
-	}
+function asPositiveNumberArray(myInput){
+    if (typeof(myInput)==="string")
+	return (myInput
+		.replace(/,/g," ")
+		.split(/\s+/)
+		.map(function(s){ return +s; })
+		.filter(function(n){ return n>0; })
+	       );
+    if (Array.isArray(myInput))
+	return (myInput
+		.map(function(s){ return +s; })
+		.filter(function(n){ return n>0; })
+	       );
+    throw new Error("asPositiveNumberArray: could not parse myInput"+myInput);
 }
 
-
-function getPositiveNumberArray(jqsel){
-    return ($(jqsel)
-	    .val()
-	    .split(/\s+/)
-	    .map(function(s){ return +s; })
-	    .filter(function(n){ return n>0; })
-	    );
+function init(){
+    var editorElement = document.getElementById('editor');
+    var editorOptions = {
+	schema: require('./configSchema.json')
+    };
+    window.editor = new window.JSONEditor(editorElement, editorOptions);
 }
-
-function redrawStepChart(){
-    var buyerValues = getPositiveNumberArray('#costs');
-    var sellerCosts = getPositiveNumberArray('#values');
-    $('#aggregateSupplyDemandDiv').html('');
-    $.jqplot("aggregateSupplyDemandDiv", 
-	     [buyerValues,sellerCosts],
-	     { seriesDefaults:{
-		 step: true
-	     }
-	     }
-	    );
-}
-
 
 function main(){
-    var config = {};
+    $('.paramPlot').html("");
+    $('.resultPlot').html("");
+    window.editor.getValue().forEach(runSimulation);
+}
+
+function runSimulation(simConfig, slot){
     // clear any leftovers
-    $('.jqplot-target').remove();
-    $('#tradingData').remove();
-    $('#downloadButton').remove();
+    $('#paramPlot'+slot).html("");
+    $('#resultPlot'+slot).html("");
     // set up and run new simulation
-    try {
-	var inprops = ['buySellBookLimit',
-		       'buyerImproveRuleLevel',
-		       'sellerImprovementRuleLevel',
-		       'resetAfterEachTrade',
-		       'periods',
-		       'numberOfBuyers',
-		       'numberOfSellers',
-		       'buyerRate',
-		       'sellerRate',
-		       'periodDuration',
-		       'integer',
-		       'keepPreviousOrders',
-		       'ignoreBudgetConstraint'];
-	var UI = {};
-	inprops.forEach(function(k){
-	    var v = +($('#'+k).val());
-	    if (v) UI[k] = v;
-	});
-	var 
-	var buySellBookLimit = +($('#buySellBookLimit').val()) || 0;
-	var buyerImprovementRuleLevel = +($('#buyerImprovementRuleLevel').val()) || 0;
-	var sellerImprovementRuleLevel = +($('#sellerImprovementRuleLevel').val()) || 0;
-	var booklimit = Math.max(buySellBookLimit, buyerImprovementRuleLevel, sellerImprovementRuleLevel);
-	var resetAfterEachTrade = +($('#resetAfterEachTrade').val());
-	config = {
-	    "H": 200, 
-	    "L":1,
-	    "sellerCosts": getPositiveNumberArray('#costs'),
-	    "buyerValues": getPositiveNumberArray('#values'),
-	    "periods": +($('#periods').val()),
-	    "numberOfBuyers": +($('#numberOfBuyers').val()),
-	    "numberOfSellers": +($('#numberOfSellers').val()),
-	    "buyerRate": +($('#buyerRate').val()),
-	    "sellerRate": +($('#sellerRate').val()),
-	    "periodDuration": +($('#periodDuration').val()),
-	    "integer": +($('#integer').val()),
-	    "keepPreviousOrders": +($('#keepPreviousOrders').val()),
-	    "ignoreBudgetConstraint": +($('#ignoreBudgetConstraint').val()),
-	    "xMarket": {
-		bookfixed: 1,
-		booklimit: booklimit || 10,
-		buyImprove: (buyerImprovementRuleLevel>0)? {level: (buyerImprovementRuleLevel-1)} : 0,
-		sellImprove: (sellerImprovementRuleLevel>0)? {level: (sellerImprovementRuleLevel-1)} : 0,
-		buySellBookLimit: buySellBookLimit,
-		resetAfterEachTrade: resetAfterEachTrade
-	    }
-	};
-    } catch(e){
-	console.log(e);
-	$('#runError').text(e);
-    }
+    var config = Object.assign({}, simConfig);
+    config.xMarket = Object.assign({}, simConfig.xMarket);
+    var booklimit = Math.max(config.buySellBookLimit, config.buyerImprovementRuleLevel, config.sellerImprovementRuleLevel);
+    config.bookfixed = 1;
+    config.booklimit = booklimit || 10;
+
+    var redrawStepChart = function(sim, slot){
+	var buyerValues = asPositiveNumberArray(sim.options.buyerValues);
+	var sellerCosts = asPositiveNumberArray(sim.options.sellerCosts);
+	$('#paramPlot'+slot).html('');
+	$.jqplot("paramPlot"+slot, 
+		 [buyerValues,sellerCosts],
+		 { 
+		     seriesDefaults:{
+			 step: true
+		     },
+		     axes:{
+			 xaxis:{
+			     show:true,
+			     tickInterval: 1
+			 },
+			 yaxis:{
+			     show:true,
+			     min:0,
+			     max: sim.options.H
+			 }
+		     }	 
+		 }
+		);
+    };
+
+
+    
     var onPeriod = function(e,sim){
-	var plotOptions = {
-	    title: "ZI robot trades - Period "+sim.period,
-	    axes:{
-		xaxis:{
-		    show:true,
-		    label: 't(sec)',
-		    min:0,
-		    max: sim.periodDuration
-		},
-		yaxis:{
-		    show:true,
-		    label: 'price',
-		    min:0,
-		    max: 200
-		}
-	    }
-	};
-	(CSV
-	 .begin(sim.logs.trade.data)
-	 .hslice({period:[sim.period,sim.period]})
-	 .jqplot([
-	     ["ZI-period-"+sim.period,
-	      [["t","price"]],
-	      plotOptions
-	     ]
-	 ])
-	 .go()
-	);
+	console.log(sim.period, config.periods, slot);
+	if (sim.period<config.periods){
+	    $('#resultPlot'+slot).html("<h1>"+Math.round(100*sim.period/config.periods)+"% complete</h1>");
+	} else {
+	    $('#resultPlot'+slot).html("");
+	}
     };
 
     var makeTradeTable = function(sim){
@@ -168,15 +112,65 @@ function main(){
 	});
     };
     
+    var plotPriceTimeSeries = function(sim){
+	var plotOptions = {
+	    axes:{
+		xaxis:{
+		    show:true,
+		    min:0,
+		    max: (1+sim.period)*sim.periodDuration,
+		    tickInterval: 1000
+		},
+		yaxis:{
+		    show:true,
+		    min:0,
+		    max: sim.options.H
+		}
+	    }
+	};
+	(CSV
+	 .begin(sim.logs.trade.data)
+	 .jqplot([
+	     ["tradePlot",
+	      [["t","price"]],
+	      plotOptions
+	     ]
+	 ])
+	 .go()
+	);
+    };
+
+    var plotOHLC = function(sim){
+	var plotOptions = {
+	    axes:{
+		xaxis: {
+		    tickInterval: 1
+		},
+		y2axis: {
+		    show: true,
+		    min: 0,
+		    max: sim.options.H
+		}
+	    },
+	    seriesDefaults:{yaxis:'y2axis'},
+	    series: [{renderer:$.jqplot.OHLCRenderer}]
+	};
+	$.jqplot("resultPlot"+slot, [sim.logs.ohlc.data], plotOptions);
+    };
+
     var onDone = function(e,sim){
-	setTimeout(makeTradeTable, 500, sim);
-	setTimeout(activateDownloadButton, 1000, sim);
+	plotOHLC(sim);
+	setTimeout(redrawStepChart, 500, sim);
+	// setTimeout(makeTradeTable, 700, sim);
+	// setTimeout(activateDownloadButton, 1000, sim);
     }; 
 
-    window.sim = SMRS.runSimulation(config, onDone, onPeriod); 
+    var sim = SMRS.runSimulation(config, onDone, onPeriod); 
+    redrawStepChart(sim, slot);
 }
 
+$(function(){
+    init();
+});
 
 $('#runButton').click(main);
-$('#costs').on('keyup', debounce(2000, redrawStepChart));
-$('#values').on('keyup', debounce(2000, redrawStepChart));

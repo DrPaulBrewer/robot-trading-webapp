@@ -1,15 +1,16 @@
 {
   "name": "robot-trading-webapp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "website generator for robot trading single page webapp",
   "main": " ",
   "dependencies": {
-    "single-market-robot-simulator": "^0.14.0"
+    "json-editor": "^0.7.25",
+    "single-market-robot-simulator": "^0.16.0"
   },
   "devDependencies": {},
   "scripts": {
-      "make-gh-pages": "./make-gh-pages.sh",
-      "test": "echo \"Error: no test specified\" && exit 1"
+    "make-gh-pages": "./make-gh-pages.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

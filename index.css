@@ -14,7 +14,11 @@ textarea {
     height: 50px;
     font-size: xx-large;
 }
-#aggregateSupplyDemandDiv {
+.paramPlot {
     height: 400px;
-    width: 300px;
+    width: 400px;
+}
+.resultPlot {
+    height: 400px;
+    width: 800px;
 }
