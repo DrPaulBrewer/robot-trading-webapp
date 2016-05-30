@@ -5,7 +5,7 @@
   "main": " ",
   "dependencies": {
     "json-editor": "^0.7.25",
-    "single-market-robot-simulator": "^0.16.0"
+    "single-market-robot-simulator": "^0.17.0"
   },
   "devDependencies": {},
   "scripts": {
