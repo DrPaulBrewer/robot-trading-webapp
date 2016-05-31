@@ -10,6 +10,8 @@ var app = (function(){
     require('json-editor'); // defines window.JSONEditor
     if (!(window.JSONEditor))
 	throw new Error("required json-editor not found at window.JSONEditor");
+    /* enable use of twitter bootstrap 3 by json editor. requires bootstrap 3 css/js to be loaded in index.html */
+    window.JSONEditor.defaults.options.theme = 'bootstrap3';
 
     function debounce(a, b){
 	var ms = (typeof(a)==='number')? a: b;
