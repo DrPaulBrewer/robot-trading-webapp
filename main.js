@@ -119,6 +119,20 @@ var app = (function(){
 	    }
 	};
 
+	var asSeries = function(data){
+	    var result = {};
+	    var header = data[0];
+	    var i,l,row,j,k;
+	    for(i=0,l=header.length;i<l;++i)
+		result[header[i]] = [];
+	    for(i=1,l=data.length;i<l;++i){
+		row = data[i];
+		for(j=0,k=row.length;j<k;++j)
+		    result[header[j]][i-1] = row[j];
+	    }
+	    return result;
+	};
+
 	var plotPriceTimeSeries = function(sim){
 	    var tCol = sim.logs.trade.data[0].indexOf("t");
 	    var priceCol = sim.logs.trade.data[0].indexOf("price");
@@ -143,25 +157,52 @@ var app = (function(){
 	};
 
 	var plotOHLC = function(sim){
-	    var plotOptions = {
-		axes:{
-		    xaxis: {
-			tickInterval: 1
-		    },
-		    y2axis: {
-			show: true,
-			min: 0,
-			max: sim.options.H
-		    }
+	    sim.logs.ohlc.data.unshift(['period',
+					'open',
+					'high',
+					'low',
+					'close']);
+	    var series = asSeries(sim.logs.ohlc.data);
+	    var data = [
+		{
+		    name: 'open',
+		    x: series.period,
+		    y: series.open,
+		    type: 'scatter',
+		    mode: 'markers'
 		},
-		seriesDefaults:{yaxis:'y2axis'},
-		series: [{renderer:$.jqplot.OHLCRenderer}]
+		{
+		    name: 'high',
+		    x: series.period,
+		    y: series.high,
+		    type: 'scatter',
+		    mode: 'markers'
+		},
+		{
+		    name: 'low',
+		    x: series.period,
+		    y: series.low,
+		    type: 'scatter',
+		    mode: 'markers'
+		},
+		{
+		    name: 'close',
+		    x: series.period,
+		    y: series.close,
+		    type: 'scatter',
+		    mode: 'lines+markers'
+		}];
+
+	    var layout = {
+		yaxis: {
+		    range: [0,200]
+		}
 	    };
-	    $.jqplot("resultPlot"+slot, [sim.logs.ohlc.data], plotOptions, layoyt);
+	    plotly.newPlot('resultPlot'+slot, data, layout);
 	};
 
 	var clickCounter = 0;
-	var visualizations = [plotPriceTimeSeries];
+	var visualizations = [plotOHLC, plotPriceTimeSeries];
 
 	var draw = function(sim){
 	    $('#resultPlot'+slot).html("");
@@ -196,3 +237,4 @@ $(function(){
 });
 
 $('#runButton').click(app.main);
+
