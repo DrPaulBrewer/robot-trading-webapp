@@ -12,7 +12,9 @@ var app = (function(){
 	throw new Error("required json-editor not found at window.JSONEditor");
     /* enable use of twitter bootstrap 3 by json editor. requires bootstrap 3 css/js to be loaded in index.html */
     window.JSONEditor.defaults.options.theme = 'bootstrap3';
-
+    const plotly = require('plotly.js');
+    if (!(plotly))
+	throw new Error("require('plotly.js') failed");
     function debounce(a, b){
 	var ms = (typeof(a)==='number')? a: b;
 	var func = (typeof(a)==='function')? a: b;
@@ -71,28 +73,39 @@ var app = (function(){
 	config.booklimit = booklimit || 10;
 
 	var redrawStepChart = function(sim, slot){
+	    var i,l;
+	    var xboth=[],yBuyer=[],ySeller=[];
 	    var buyerValues = asPositiveNumberArray(sim.options.buyerValues);
 	    var sellerCosts = asPositiveNumberArray(sim.options.sellerCosts);
+	    for(i=0,l=Math.max(buyerValues.length,sellerCosts.length);i<l;++i){
+		xboth[i]=1+i;
+	    }
 	    $('#paramPlot'+slot).html('');
-	    $.jqplot("paramPlot"+slot, 
-		     [buyerValues,sellerCosts],
-		     { 
-			 seriesDefaults:{
-			     step: true
-			 },
-			 axes:{
-			     xaxis:{
-				 show:true,
-				 tickInterval: 1
-			     },
-			     yaxis:{
-				 show:true,
-				 min:0,
-				 max: sim.options.H
-			     }
-			 }	 
-		     }
-		    );
+	    var demand = {
+		name: 'unit value',
+		x: xboth.slice(0,buyerValues.length),
+		y: buyerValues,
+		mode: 'lines+markers',
+		type: 'scatter'
+	    };
+	    var supply = {
+		name: 'unit cost',
+		x: xboth.slice(0,sellerCosts.length),
+		y: sellerCosts,
+		mode: 'lines+markers',
+		type: 'scatter'
+	    };
+	    var layout = {
+		xaxis: {
+		    range: [0, xboth.length]
+		},
+		yaxis: {
+		    range: [0,200]
+		}
+	    };
+	    var plotlyData = [demand, supply];
+	    plotly.newPlot('paramPlot'+slot, plotlyData, layout);
+	    
 	};
 
 
@@ -106,51 +119,27 @@ var app = (function(){
 	    }
 	};
 
-	var makeTradeTable = function(sim){
-	    (CSV
-	     .begin(sim.logs.trade.data)
-	     .table("tradingData",{caption:"ZI Robot Market Trades"})
-	     .go()
-	    );
-	};
-
-	var activateDownloadButton = function(sim){
-	    $('<button id="downloadButton">Download trades.csv file</button>').insertAfter("#tradingData");
-	    $('#downloadButton').click(function(){
-		(CSV
-		 .begin(sim.logs.trade.data)
-		 .download("trades.csv")
-		 .go()
-		);
-	    });
-	};
-	
 	var plotPriceTimeSeries = function(sim){
-	    var plotOptions = {
-		axes:{
-		    xaxis:{
-			show:true,
-			min:0,
-			max: (1+sim.period)*sim.periodDuration,
-			tickInterval: 1000
-		    },
-		    yaxis:{
-			show:true,
-			min:0,
-			max: sim.options.H
-		    }
+	    var tCol = sim.logs.trade.data[0].indexOf("t");
+	    var priceCol = sim.logs.trade.data[0].indexOf("price");
+	    var i,l,x=[],y=[];
+	    var d = sim.logs.trade.data;
+	    for(i=1,l=d.length;i<l;++i){
+		x[i-1] = d[i][tCol];
+		y[i-1] = d[i][priceCol];
+	    }
+	    var trace = {
+		x: x,
+		y: y,
+		type: 'scatter',
+		mode: 'lines+markers'
+	    };
+	    var layout = {
+		yaxis: {
+		    range: [0,200]
 		}
 	    };
-	    (CSV
-	     .begin(sim.logs.trade.data)
-	     .jqplot([
-		 ["resultPlot"+slot,
-		  [["t","price"]],
-		  plotOptions
-		 ]
-	     ])
-	     .go()
-	    );
+	    plotly.newPlot('resultPlot'+slot, [trace], layout);
 	};
 
 	var plotOHLC = function(sim){
@@ -168,11 +157,11 @@ var app = (function(){
 		seriesDefaults:{yaxis:'y2axis'},
 		series: [{renderer:$.jqplot.OHLCRenderer}]
 	    };
-	    $.jqplot("resultPlot"+slot, [sim.logs.ohlc.data], plotOptions);
+	    $.jqplot("resultPlot"+slot, [sim.logs.ohlc.data], plotOptions, layoyt);
 	};
 
 	var clickCounter = 0;
-	var visualizations = [plotOHLC, plotPriceTimeSeries];
+	var visualizations = [plotPriceTimeSeries];
 
 	var draw = function(sim){
 	    $('#resultPlot'+slot).html("");
@@ -190,8 +179,6 @@ var app = (function(){
 	var onDone = function(e,sim){
 	    draw(sim);
 	    setTimeout(redrawStepChart, 500, sim);
-	    // setTimeout(makeTradeTable, 700, sim);
-	    // setTimeout(activateDownloadButton, 1000, sim);
 	}; 
 
 	var mysim = SMRS.runSimulation(config, onDone, onPeriod); 
