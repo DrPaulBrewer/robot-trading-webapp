@@ -2,7 +2,7 @@
 /* This file is open source software.  The MIT License applies to this software. */
 
 /* jshint browserify:true,jquery:true,esnext:true,eqeqeq:true,undef:true,lastsemic:true,strict:true,unused:true */
-/* globals CSV:false */
+/* globals console:true */
 
 var app = (function(){
     'use strict';
@@ -74,7 +74,7 @@ var app = (function(){
 
 	var redrawStepChart = function(sim, slot){
 	    var i,l;
-	    var xboth=[],yBuyer=[],ySeller=[];
+	    var xboth=[];
 	    var buyerValues = asPositiveNumberArray(sim.options.buyerValues);
 	    var sellerCosts = asPositiveNumberArray(sim.options.sellerCosts);
 	    for(i=0,l=Math.max(buyerValues.length,sellerCosts.length);i<l;++i){
@@ -156,12 +156,13 @@ var app = (function(){
 	    plotly.newPlot('resultPlot'+slot, [trace], layout);
 	};
 
-	var plotOHLC = function(sim){
-	    sim.logs.ohlc.data.unshift(['period',
-					'open',
-					'high',
-					'low',
-					'close']);
+	var prepOHLC = function(sim){
+	    if (sim.logs.ohlc.data[0][0]!=='period')
+		sim.logs.ohlc.data.unshift(['period',
+					    'open',
+					    'high',
+					    'low',
+					    'close']);
 	    var series = asSeries(sim.logs.ohlc.data);
 	    var data = [
 		{
@@ -193,27 +194,59 @@ var app = (function(){
 		    mode: 'lines+markers'
 		}];
 
+	    return data;
+	};
+
+	var plotOHLC = function(sim){
 	    var layout = {
 		yaxis: {
 		    range: [0,200]
 		}
 	    };
+	    
+	    var data = prepOHLC(sim);
+
+	    plotly.newPlot('resultPlot'+slot, data, layout);
+
+	};
+
+	var plotOHLCHistogram = function(sim){
+	    var layout = {
+		barmode: 'overlay',
+		xaxis: {
+		    range: [0,100]
+		}
+	    };
+	    var data = (prepOHLC(sim)
+			.filter(function(plot){
+			    return (plot.name==='open') || (plot.name==='close');
+			})
+			.map(function(plot){
+			    plot.x = plot.y;
+			    delete plot.y;
+			    delete plot.mode;
+			    plot.type = 'histogram';
+			    plot.opacity = 0.60;
+			    plot.nbinsx = 100;
+			    return plot;
+			})
+		       );
+	    
 	    plotly.newPlot('resultPlot'+slot, data, layout);
 	};
 
+	var visualizations = [plotOHLCHistogram, plotOHLC, plotPriceTimeSeries];
+
 	var clickCounter = 0;
-	var visualizations = [plotOHLC, plotPriceTimeSeries];
 
 	var draw = function(sim){
+	    var drawme = function(){ draw(sim); };
+	    $('#changeVisualization').off('click', drawme);
 	    $('#resultPlot'+slot).html("");
-	    $('#resultPlot'+slot).off('click');
 	    visualizations[clickCounter](sim);
 	    clickCounter = (1+clickCounter)%(visualizations.length);
-	    console.log("clickCounter", clickCounter);
 	    setTimeout(function(){
-		$('#resultPlot'+slot).on('click',  function(){
-		    draw(sim);
-		});
+		$('#changeVisualization').on('click',  drawme);
 	    }, 500);
 	};
 
@@ -223,6 +256,8 @@ var app = (function(){
 	}; 
 
 	var mysim = SMRS.runSimulation(config, onDone, onPeriod); 
+	if (config.periods>=100)
+	    delete mysim.logs.order;
 	redrawStepChart(mysim, slot);
     }
     return {
