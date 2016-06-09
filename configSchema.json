@@ -7,20 +7,29 @@
 	"collapsed": true
     },
     "items":{
+	"type": "object",
 	"properties": {
 	    "buyerValues": {
-		"type": "string",
+		"type": "array",
+		"items": {
+		    "type": "number"
+		},
 		"format": "textarea",
+		"flavor": "positiveNumber",
 		"propertyOrder": 10,
 		"description": "Aggregate Buyers Values",
-		"default": "100 95 90 85 80 75 70 60 50 40 30 20 10"
+		"default": [100,95,90,85,80,75,70,60,50,40,30,20,10]
 	    },
 	    "sellerCosts": {
-		"type": "string",
+		"type": "array",
+		"items": {
+		    "type": "number"
+		},
 		"format": "textarea",
+		"flavor": "positiveNumber",
 		"propertyOrder": 20,
 		"description": "Aggregate Sellers Costs",
-		"default": "10 20 30 40 50 60 70 80 90 100"
+		"default": [10,20,30,40,50,60,70,80,90,100]
 	    },
 	    "L": {
 		"type": "number",
@@ -87,6 +96,12 @@
 		"propertyOrder": 83,
 		"description": "false uses Marginal Cost / Marginal Value as limits for zi Agent random asks/bids; true ignores MC/MV and generates random asks/bids on [minPrice,maxPrice]",
 		"default": false
+	    },
+	    "silent":{
+		"type": "boolean",
+		"propertyOrder": 85,
+		"description": "false emits more console.log messages, true suppresses",
+		"default": true
 	    },
 	    "xMarket":{
 		"type": "object",

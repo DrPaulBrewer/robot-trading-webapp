@@ -8,7 +8,9 @@
     "glslify": "^5.0.2",
     "json-editor": "^0.7.25",
     "plotly.js": "^1.12.0",
-    "single-market-robot-simulator": "*"
+    "positive-number-array": "^1.0.0",
+    "single-market-robot-simulator": "*",
+    "transpluck": "^1.0.2"
   },
   "devDependencies": {},
   "scripts": {
