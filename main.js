@@ -151,7 +151,7 @@ var app = (function(){
 	    if (chart.bins) { 
 		mybins = chart.bins;
 	    } else {
-		mybins = Math.max(0, Math.min(100, Math.floor(mymax-mymin)));
+		mybins = Math.max(0, Math.min(200, Math.floor(1+mymax-mymin)));
 	    }
 	    if (mybins && mybins!==100)
 		traces.forEach(function(trace){ trace.nbinsx = mybins; });
@@ -162,9 +162,6 @@ var app = (function(){
 		},
 		title: chart.title
 	    };
-	    console.log("histogram");
-	    console.log(traces);
-	    console.log(layout);
 	    return [traces, layout];
 	};
     }
@@ -205,9 +202,7 @@ var app = (function(){
     }
 
 
-/* do not need this next function yet ---
-
-    function plotOHLCHistogram(sim, slot){
+    function plotOHLCHistogram(sim){
 	var layout = {
 	    barmode: 'overlay',
 	    xaxis: {
@@ -232,10 +227,8 @@ var app = (function(){
 		    })
 		   );
 	
-	plotly.newPlot('resultPlot'+slot, data, layout);
+	return [data, layout];
     }
-
-*/
 
     function plotOHLCTimeSeries(sim){
 	var layout = yaxisRange(sim);	
@@ -282,8 +275,95 @@ var app = (function(){
 	})
     ];
 
+    var mediumDataVisuals = [
+	plotOHLCHistogram,
+	histogramFactory({
+	    title: "periods (y) by volume(x) histogram",
+	    names: ["volume"],
+	    logs: ["volume"], 
+	    vars: ["volume"]
+	}),
+	histogramFactory({
+	    title: "trades(y) by price(x) histogram",
+	    names: ["trades"],
+	    logs: ["trade"],
+	    vars: ["price"]
+	}),
+	histogramFactory({
+	    title: "trades(y) by profit(x) histogram",
+	    names: ["buyer", "seller"],
+	    logs:  ["trade"],
+	    vars:  ["buyerProfit","sellerProfit"]
+	}),
+	histogramFactory({
+	    title: "trades(y) by cost/value(x) histogram",
+	    names: ["buyer","seller"],
+	    logs: ["trade"],
+	    vars: ["buyerValue","sellerCost"]
+	}),
+	histogramFactory({
+	    title: "trades(y) by time (tp) histogram",
+	    names: ["tp"],
+	    logs: ["trade"],
+	    vars: ["tp"]
+	}),
+	histogramFactory({
+	    title: "order price distribution",
+	    names: ["buyLimitPrice","sellLimitPrice"],
+	    logs: ["buyorder","sellorder"],
+	    vars: ["buyLimitPrice","sellLimitPrice"]
+	}),
+	histogramFactory({
+	    title: "order time distribution",
+	    names: ["buyOrderTime","sellOrderTime"],
+	    logs: ["buyorder","sellorder"],
+	    vars: ["tp","tp"]
+	})
+    ];	    
+	    
+    var largeDataVisuals = [
+	plotOHLCHistogram,
+	histogramFactory({
+	    title: "periods (y) by volume(x) histogram",
+	    names: ["volume"],
+	    logs: ["volume"], 
+	    vars: ["volume"]
+	}),
+	histogramFactory({
+	    title: "trades(y) by price(x) histogram",
+	    names: ["trades"],
+	    logs: ["trade"],
+	    vars: ["price"]
+	}),
+	histogramFactory({
+	    title: "trades(y) by profit(x) histogram",
+	    names: ["buyer", "seller"],
+	    logs:  ["trade"],
+	    vars:  ["buyerProfit","sellerProfit"]
+	}),
+	histogramFactory({
+	    title: "trades(y) by cost/value(x) histogram",
+	    names: ["buyer","seller"],
+	    logs: ["trade"],
+	    vars: ["buyerValue","sellerCost"]
+	}),
+	histogramFactory({
+	    title: "trades(y) by time (tp) histogram",
+	    names: ["tp"],
+	    logs: ["trade"],
+	    vars: ["tp"]
+	}),
+    ];
+
     function showSimulation(simConfig, slot){
-	var plotParams = smallDataVisuals[visual](simConfig);
+	var visuals = [];
+	if (simConfig.config.periods<=50)
+	    visuals = smallDataVisuals;
+	else if (simConfig.config.periods<=500)
+	    visuals = mediumDataVisuals;
+	else
+	    visuals = largeDataVisuals;
+	var plotParams = visuals[visual%visuals.length](simConfig);
 	plotParams.unshift('resultPlot'+slot);
 	plotly.newPlot.apply(plotly, plotParams);
     }
@@ -312,6 +392,10 @@ var app = (function(){
 
 	var mysim = SMRS.runSimulation(simConfig, onDone, onPeriod); 
 	plotParameters(mysim, slot);
+	if (mysim.config.periods>500){
+	    delete mysim.logs.buyorder;
+	    delete mysim.logs.sellorder;
+	}
 
 	return mysim;
 	
@@ -337,7 +421,7 @@ var app = (function(){
 	},
 	
 	next: function next(){ 
-	    visual = (1+visual) % smallDataVisuals.length;
+	    visual++;
 	    sims.forEach(showSimulation);
 	}
     };
