@@ -2,7 +2,6 @@
 /* This file is open source software.  The MIT License applies to this software. */
 
 /* jshint browserify:true,jquery:true,esnext:true,eqeqeq:true,undef:true,lastsemic:true,strict:true,unused:true */
-/* globals console:true */
 
 require('json-editor'); // defines window.JSONEditor
 
@@ -12,6 +11,9 @@ window.JSONEditor.defaults.options.iconlib = 'bootstrap3';
 
 /* defines a function accepting string, returning array of positive numbers or undefined */
 const positiveNumberArray = require('positive-number-array');
+
+/* defines array functions from d3 */
+const d3A = require('d3-array');
 
 /* suggested by json-editor README.md lines 1122-1165 */
 window.JSONEditor.defaults.resolvers.unshift(function(schema){
@@ -104,7 +106,8 @@ var app = (function(){
     }
 
     function histogramFactory(chart){
-	/* chart properties are title, names, logs, vars, bins, range */
+	/* req chart properties are title, names, logs, vars */ 
+	/* opt chart properties are bins, range */
 	return function(sim){ 
 	    var traces = chart.names.map(function(name,i){
 		var mylog = chart.logs[i%chart.logs.length];
@@ -122,30 +125,12 @@ var app = (function(){
 	    if (chart.range){ 
 		myrange = chart.range;
 	    } else {
-		/* there are only a few traces but datasets can be large */
-		/* avoid stack overflows with large datasets */
-		/* see Linus Unneback's Stack Overflow posting */
-		/* http://stackoverflow.com/a/13440842/103081 */
-		mymin = Math.min.apply(Math, 
-				       traces.map(function(trace){
-					   var x = trace.x;
-					   var j = x.length, min=Infinity;
-					   while(j--)
-					       if (x[j]<min)
-						   min = x[j];
-					   return min;
-				       })
-				      );
-		mymax = Math.max.apply(Math, 
-				       traces.map(function(trace){ 
-					   var x = trace.x;
-					   var j = x.length, max=-Infinity;
-					   while(j--)
-					       if (x[j]>max)
-						   max = x[j];
-					   return max;
-				       })
-				      );
+		mymin = d3A.min(traces, function(trace){ 
+		    return d3A.min(trace.x);
+		});
+		mymax = d3A.max(traces, function(trace){
+		    return d3A.max(trace.x);
+		});
 		myrange = [mymin, mymax];
 	    }
 	    if (chart.bins) { 
@@ -163,6 +148,125 @@ var app = (function(){
 		title: chart.title
 	    };
 	    return [traces, layout];
+	};
+    }
+
+    function histogram2DFactory(chart){
+	/* req chart properties are title, names, logs, vars */
+	['names','logs','vars'].forEach(function(prop){ 
+	    if (!Array.isArray(chart[prop]))
+		throw new Error("histogram2DFactory: Expected array for chart."+prop+" got: "+typeof(chart[prop]));
+	    if ((chart[prop].length===0) || (chart[prop].length>2))
+		throw new Error("histogram2DFactory: Expected "+prop+" to be array of length 1 or 2, got: "+chart[prop].length);
+	});
+
+	return function(sim){
+	    var series = chart.names.map(function(name,i){
+		var mylog = chart.logs[i%chart.logs.length];
+		var myvar = chart.vars[i%chart.vars.length];
+		return transpluck(sim.logs[mylog].data, 
+				  {pluck: [myvar]})[myvar];
+	    });
+
+	    var points = Object.assign(
+		{},
+		{
+		    x: series[0],
+		    y: series[1],
+		    mode: 'markers',
+		    name: 'points',
+		    marker: {
+			color: 'rgb(102,0,0)',
+			size: 2,
+			opacity: 0.4
+		    }
+		},
+		chart.points
+	    );
+				       
+
+	    var density = Object.assign(
+		{},
+		{
+		    x: series[0],
+		    y: series[1],
+		    name: 'density',
+		    ncontours: 30,
+		    colorscale: 'Hot',
+		    reversescale: true,
+		    showscale: false,
+		    type: 'histogram2dcontour'
+		},
+		chart.density
+	    );
+	    
+	    var upper = Object.assign(
+		{},
+		{
+		    x: series[0],
+		    name: chart.names[0],
+		    marker: { color: points.marker.color},
+		    yaxis: 'y2',
+		    type: 'histogram'
+		},
+		chart.upper
+	    );
+	    
+	    var right = Object.assign(
+		{},
+		{
+		    y: series[1],
+		    name: chart.names[1],
+		    marker: { color: points.marker.color},
+		    xaxis: 'x2',
+		    type: 'histogram'
+		},
+		chart.right
+	    );
+	    
+	    var axiscommon = Object.assign(
+		{},
+		{
+		    showgrid: false,
+		    zeroline: false
+		},
+		chart.axiscommon
+	    );
+
+	    var layout = Object.assign(
+		{},
+		{
+		    title: chart.title,
+		    showlegend: false,
+		    margin: {t: 50},
+		    hovermode: 'closest',
+		    bargap: 0,
+		    xaxis: Object.assign(
+			{},
+			axiscommon,
+			{ domain: [0,0.8] }
+		    ),
+		    yaxis: Object.assign(
+			{},
+			axiscommon,
+			{ domain: [0,0.8] }
+		    ),
+		    xaxis2: Object.assign(
+			{},
+			axiscommon,
+			{ domain: [0.8,1] }
+		    ),
+		    yaxis2: Object.assign(
+			{},
+			axiscommon,
+			{ domain: [0.8,1] }
+		    )
+		},
+		chart.layout
+	    );
+
+	    return [[points, density, upper, right], layout];
+
 	};
     }
 
@@ -276,7 +380,24 @@ var app = (function(){
     ];
 
     var mediumDataVisuals = [
-	plotOHLCHistogram,
+	histogram2DFactory({
+	    title: "close price(y) by volume(x)",
+	    names: ["volume","close"],
+	    logs: ["volume","ohlc"],
+	    vars: ["volume","close"]
+	}),
+	histogram2DFactory({
+	    title: "close price(y) vs open price(x)",
+	    names: ["open","close"],
+	    logs: ["ohlc"],
+	    vars: ["open","close"]
+	}),
+	histogram2DFactory({
+	    title: "trade price(y) vs time in period (tp)",
+	    names: ["time","price"],
+	    logs: ["trade"],
+	    vars: ["tp","price"]
+	}),
 	histogramFactory({
 	    title: "periods (y) by volume(x) histogram",
 	    names: ["volume"],
@@ -295,11 +416,23 @@ var app = (function(){
 	    logs:  ["trade"],
 	    vars:  ["buyerProfit","sellerProfit"]
 	}),
+	histogram2DFactory({
+	    title: "sellerProfit(y) vs buyerProfit(x)",
+	    names: ["buyerProfit","sellerProfit"],
+	    logs: ["trade"],
+	    vars: ["buyerProfit","sellerProfit"]
+	}),
 	histogramFactory({
 	    title: "trades(y) by cost/value(x) histogram",
 	    names: ["buyer","seller"],
 	    logs: ["trade"],
 	    vars: ["buyerValue","sellerCost"]
+	}),
+	histogram2DFactory({
+	    title: "buyerValue(y) vs sellerCost(x) trade histogram",
+	    names: ["seller","buyer"],
+	    logs: ["trade"],
+	    vars: ["sellerCost","buyerValue"]
 	}),
 	histogramFactory({
 	    title: "trades(y) by time (tp) histogram",
@@ -312,17 +445,28 @@ var app = (function(){
 	    names: ["buyLimitPrice","sellLimitPrice"],
 	    logs: ["buyorder","sellorder"],
 	    vars: ["buyLimitPrice","sellLimitPrice"]
-	}),
-	histogramFactory({
-	    title: "order time distribution",
-	    names: ["buyOrderTime","sellOrderTime"],
-	    logs: ["buyorder","sellorder"],
-	    vars: ["tp","tp"]
 	})
     ];	    
-	    
+
     var largeDataVisuals = [
-	plotOHLCHistogram,
+	histogram2DFactory({
+	    title: "close price(y) by volume(x)",
+	    names: ["volume","close"],
+	    logs: ["volume","ohlc"],
+	    vars: ["volume","close"]
+	}),
+	histogram2DFactory({
+	    title: "close price(y) vs open price(x)",
+	    names: ["open","close"],
+	    logs: ["ohlc"],
+	    vars: ["open","close"]
+	}),
+	histogram2DFactory({
+	    title: "trade price(y) vs time in period (tp)",
+	    names: ["time","price"],
+	    logs: ["trade"],
+	    vars: ["tp","price"]
+	}),
 	histogramFactory({
 	    title: "periods (y) by volume(x) histogram",
 	    names: ["volume"],
@@ -341,20 +485,33 @@ var app = (function(){
 	    logs:  ["trade"],
 	    vars:  ["buyerProfit","sellerProfit"]
 	}),
+	histogram2DFactory({
+	    title: "sellerProfit(y) vs buyerProfit(x)",
+	    names: ["buyerProfit","sellerProfit"],
+	    logs: ["trade"],
+	    vars: ["buyerProfit","sellerProfit"]
+	}),
 	histogramFactory({
 	    title: "trades(y) by cost/value(x) histogram",
 	    names: ["buyer","seller"],
 	    logs: ["trade"],
 	    vars: ["buyerValue","sellerCost"]
 	}),
+	histogram2DFactory({
+	    title: "buyerValue(y) vs sellerCost(x) trade histogram",
+	    names: ["seller","buyer"],
+	    logs: ["trade"],
+	    vars: ["sellerCost","buyerValue"]
+	}),
 	histogramFactory({
 	    title: "trades(y) by time (tp) histogram",
 	    names: ["tp"],
 	    logs: ["trade"],
 	    vars: ["tp"]
-	}),
-    ];
+	})
+    ];	    
 
+	    
     function showSimulation(simConfig, slot){
 	var visuals = [];
 	if (simConfig.config.periods<=50)

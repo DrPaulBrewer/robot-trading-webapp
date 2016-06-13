@@ -5,6 +5,7 @@
   "main": " ",
   "dependencies": {
     "cwise": "^1.0.9",
+    "d3-array": "^0.8.1",
     "glslify": "^5.0.2",
     "json-editor": "^0.7.25",
     "plotly.js": "^1.12.0",
