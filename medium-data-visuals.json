@@ -1,0 +1,79 @@
+[
+{
+ "f": "histogram2DFactory",
+ "title": "close price(y) by volume(x)",
+ "names": ["volume","close"],
+ "logs": ["volume","ohlc"],
+ "vars": ["volume","close"]
+},
+{
+ "f": "histogram2DFactory",
+ "title": "close price(y) vs open price(x)",
+ "names": ["open","close"],
+ "logs": ["ohlc"],
+ "vars": ["open","close"]
+},
+{
+ "f": "histogram2DFactory",
+ "title": "trade price(y) vs time in period (tp)",
+ "names": ["time","price"],
+ "logs": ["trade"],
+ "vars": ["tp","price"]
+},
+{
+ "f": "histogramFactory",
+ "title": "periods (y) by volume(x) histogram",
+ "names": ["volume"],
+ "logs": ["volume"], 
+ "vars": ["volume"]
+},
+{
+ "f": "histogramFactory",
+ "title": "trades(y) by price(x) histogram",
+ "names": ["trades"],
+ "logs": ["trade"],
+ "vars": ["price"]
+},
+{
+ "f": "histogramFactory",
+ "title": "trades(y) by profit(x) histogram",
+ "names": ["buyer", "seller"],
+ "logs":  ["trade"],
+ "vars":  ["buyerProfit","sellerProfit"]
+},
+{
+ "f": "histogram2DFactory",
+ "title": "sellerProfit(y) vs buyerProfit(x)",
+ "names": ["buyerProfit","sellerProfit"],
+ "logs": ["trade"],
+ "vars": ["buyerProfit","sellerProfit"]
+},
+{
+ "f": "histogramFactory",
+ "title": "trades(y) by cost/value(x) histogram",
+ "names": ["buyer","seller"],
+ "logs": ["trade"],
+ "vars": ["buyerValue","sellerCost"]
+},
+{
+ "f": "histogram2DFactory",
+ "title": "buyerValue(y) vs sellerCost(x) trade histogram",
+ "names": ["seller","buyer"],
+ "logs": ["trade"],
+ "vars": ["sellerCost","buyerValue"]
+},
+{
+ "f": "histogramFactory",
+ "title": "trades(y) by time (tp) histogram",
+ "names": ["tp"],
+ "logs": ["trade"],
+ "vars": ["tp"]
+},
+{
+ "f": "histogramFactory",
+ "title": "order price distribution",
+ "names": ["buyLimitPrice","sellLimitPrice"],
+ "logs": ["buyorder","sellorder"],
+ "vars": ["buyLimitPrice","sellLimitPrice"]
+}
+]
