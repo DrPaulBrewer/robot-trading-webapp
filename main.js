@@ -2,6 +2,7 @@
 /* This file is open source software.  The MIT License applies to this software. */
 
 /* jshint browserify:true,jquery:true,esnext:true,eqeqeq:true,undef:true,lastsemic:true,strict:true,unused:true */
+/* global sims:true */
 
 require('json-editor'); // defines window.JSONEditor
 
@@ -39,6 +40,7 @@ window.JSONEditor.defaults.editors.positiveNumber = window.JSONEditor.defaults.e
 const plotly     = require('plotly.js');
 const SMRS       = require('single-market-robot-simulator');
 const VIZ        = require('single-market-robot-simulator-viz-plotly');
+const saveZip    = require('single-market-robot-simulator-savezip');
 
 const smallDataVisuals  = VIZ.build(require("./small-data-visuals.json"));
 const mediumDataVisuals = VIZ.build(require("./medium-data-visuals.json"));
@@ -48,6 +50,7 @@ const largeDataJSON = require("./medium-data-visuals.json").filter(function(V){
 });
 const largeDataVisuals = VIZ.build(largeDataJSON);
 const plotParamsSupplyDemand = VIZ.supplyDemand();
+
 	    
 var app = (function(){
     'use strict';
@@ -132,6 +135,14 @@ var app = (function(){
 	next: function next(){ 
 	    visual++;
 	    sims.forEach(showSimulation);
+	},
+
+	downloadData: function downloadData(){
+	    $('#downloadButton').prop('disabled',true);
+	    setTimeout(function(){
+		$('#downloadButton').prop('disabled',false);
+	    }, 60*1000);
+	    saveZip(sims);
 	}
     };
 
@@ -144,3 +155,4 @@ $(function(){
 
 $('#runButton').click(app.run);
 $('#nextButton').click(app.next);
+$('#downloadButton').click(app.downloadData);

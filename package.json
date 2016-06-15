@@ -10,6 +10,7 @@
     "plotly.js": "^1.12.0",
     "positive-number-array": "^1.0.0",
     "single-market-robot-simulator": "^0.23.0",
+    "single-market-robot-simulator-savezip": "^0.1.0",
     "single-market-robot-simulator-viz-plotly": "^0.1.0"
   },
   "devDependencies": {},
