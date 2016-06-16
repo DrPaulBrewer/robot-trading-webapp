@@ -4,7 +4,10 @@
 rm -rf ./build
 mkdir ./build
 npm update
-browserify main.js -o ./build/bundle.js
+# without minifyify
+# browserify main.js -o ./build/bundle.js
+# with minifyify
+browserify main.js -d -p [minifyify --map bundle.js.map --output bundle.js.map] -o ./build/bundle.js
 cp index.html ./build/
 cp index.css ./build/
 cd ./build

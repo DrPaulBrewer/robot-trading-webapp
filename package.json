@@ -10,10 +10,12 @@
     "plotly.js": "^1.12.0",
     "positive-number-array": "^1.0.0",
     "single-market-robot-simulator": "^0.23.0",
-    "single-market-robot-simulator-savezip": "^0.1.0",
+    "single-market-robot-simulator-savezip": "^0.2.0",
     "single-market-robot-simulator-viz-plotly": "^0.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "minifyify": "^7.3.3"
+  },
   "scripts": {
     "make-gh-pages": "./make-gh-pages.sh",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -2,7 +2,7 @@
 rm -rf ./build
 mkdir ./build
 npm install
-browserify main.js -o ./build/bundle.js
+browserify main.js -d -p [minifyify --map bundle.js.map --output bundle.js.map] -o ./build/bundle.js
 cp index.html ./build/
 cp index.css ./build/
 cd ./build
@@ -24,5 +24,3 @@ git config user.email "travis@eaftc.com"
 git add .
 git commit -m "Autodeploy to Github Pages"
 git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages >/dev/null 2>&1
-
-
