@@ -9,7 +9,7 @@
     "json-editor": "^0.7.25",
     "plotly.js": "^1.12.0",
     "positive-number-array": "^1.0.0",
-    "single-market-robot-simulator": "^0.25.0",
+    "single-market-robot-simulator": "^0.26.0",
     "single-market-robot-simulator-savezip": "^0.2.0",
     "single-market-robot-simulator-viz-plotly": "^0.1.0"
   },
