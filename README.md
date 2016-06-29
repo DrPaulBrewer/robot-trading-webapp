@@ -5,9 +5,16 @@ Browser-based market simulator webapp for agent-based computational economics an
 
 ##Usage
 
+Go to:    http://drpaulbrewer.github.io/robot-trading-webapp
+
 You do not need to install anything to use this simulator.  
 
-Simple go to:    http://drpaulbrewer.github.io/robot-trading-webapp
+The simulator is pre-configured with a simple comparison of markets with different supply/demand intersection.  
+
+Clicking the RUN button will run this simulation for 100 periods.  Once the simulation is complete, another button
+allows cycling among the available charts for visuazliation of the data. 
+
+Parameters of the simulations can be changed by clicking the "+" button to expand the editor.
 
 If you want to modify the simulator to work differently, or program your own agents, you may wish to 
 install this code to your own server and/or create a fork.
