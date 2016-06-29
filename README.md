@@ -75,4 +75,4 @@ Copyright 2016 Paul Brewer, Economic and Financial Technology Consulting LLC
 
 ##License
 
-[The MIT License](https://github.com/DrPaulBrewer/robot-trading-webapp/LICENSE.md)
+[The MIT License](https://github.com/DrPaulBrewer/robot-trading-webapp/blob/master/LICENSE.md)
