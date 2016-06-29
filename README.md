@@ -48,7 +48,7 @@ and generating results in the form of graphs or a downloadable .zip package of s
 All market and agent processes are conducted in separate, tested modules.  Modules are also used for user interface support,
 ETL, plotting, and saving data as zip files.  
 
-Some of these modules are:
+Significant modules, including modules authored by others, include:
 
 * [market-agents](https://www.npmjs.com/package/market-agents) generic agent functions, specific agents, and pools of agents
 * [market-engine](https://www.npmjs.com/package/market-engine) scaffolding for markets with lists of orders, pre-order checks, cancellation, and expiration
@@ -66,3 +66,13 @@ All important functionality should be conducted in an imported module subject to
 Each imported module above has tests that can be run by running "npm test" in that module's directory.
 
 The top level code, which processes user input and displays the results, does not include automated tests.
+
+##Copyright
+
+Code authored herein is 
+
+Copyright 2016 Paul Brewer, Economic and Financial Technology Consulting LLC
+
+##License
+
+[The MIT License](https://github.com/DrPaulBrewer/robot-trading-webapp/LICENSE.md)
