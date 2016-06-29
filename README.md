@@ -16,6 +16,8 @@ allows cycling among the available charts for visuazliation of the data.
 
 Parameters of the simulations can be changed by clicking the "+" button to expand the editor.
 
+Further elaboration / explanation of the various parameters will be added to this documentation as time permits.  
+
 If you want to modify the simulator to work differently, or program your own agents, you may wish to 
 install this code to your own server and/or create a fork.
 
