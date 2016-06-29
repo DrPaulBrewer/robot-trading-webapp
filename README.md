@@ -50,10 +50,10 @@ ETL, plotting, and saving data as zip files.
 
 Some of these modules are:
 
-* [market-agents](https://www.npmjs.com/package/market-agents) defines a generic agent, agents with specific strategies, and pools of agents
+* [market-agents](https://www.npmjs.com/package/market-agents) generic agent functions, specific agents, and pools of agents
 * [market-engine](https://www.npmjs.com/package/market-engine) scaffolding for markets with lists of orders, pre-order checks, cancellation, and expiration
 * [market-example-contingent](https://www.npmjs.com/package/market-example-contingent) event-driven sequential double auction market with buy, sell, stop limit, OCO one-cancels-other and OSO one-sends-other functionality
-* [single-market-robot-simulator](https://www.npmjs.com/package/single-market-robot-simulator) Simulation glue and management of multiple periods of simulation, either syncronous or asynchronous, yielding a data log files or arrays.
+* [single-market-robot-simulator](https://www.npmjs.com/package/single-market-robot-simulator) Multiple period simulations, either syncronous or asynchronous, yielding a data log files or arrays.
 * [single-market-robot-simulator-viz-plotly](https://www.npmjs.com/package/single-market-robot-simulator-viz-plotly) Extraction and transformation of simulation data to formats needed for specific charts in Plotly
 * [single-market-robot-simulator-savezip](https://www.npmjs.com/package/single-market-robot-simulator-savezip) saves configuration and data of an array of simulations as a .zip file using 3rd parties jszip and filesaver.js modules.
 * [plotly](https://www.npmjs.com/package/plotly.js) Plotly open source scientific plotting package (commercial 3rd party module)
