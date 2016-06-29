@@ -37,7 +37,7 @@ Then:
 rm -rf /var/web/192.168.1.10/zi
 mkdir -p /var/web/192.168.1.10/zi
 cp -a * /var/web/192.168.1.10/zi/
-```[
+```
 You need to change `/var/web/192.168.1.10/zi` to the directory where you wish to install the files on your web server.
 
 ##Other Modules/Libraries (dependencies)
