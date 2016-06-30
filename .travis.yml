@@ -3,7 +3,6 @@ node_js:
   - stable
 install:
   - npm install -g browserify
-  - npm install -g wavi
   - npm install
 script:
   - npm run make-gh-pages
