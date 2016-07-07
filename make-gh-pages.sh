@@ -2,7 +2,7 @@
 rm -rf ./build
 mkdir ./build
 npm install
-browserify main.js -d -p [minifyify --map bundle.js.map --output bundle.js.map] -o ./build/bundle.js
+browserify main.js -d -o ./build/bundle.js
 cp index.html ./build/
 cp index.css ./build/
 cd ./build
