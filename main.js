@@ -42,9 +42,9 @@ const SMRS       = require('single-market-robot-simulator');
 const VIZ        = require('single-market-robot-simulator-viz-plotly');
 const saveZip    = require('single-market-robot-simulator-savezip');
 
-const smallDataVisuals  = VIZ.build(require("./small-data-visuals.json"));
-const mediumDataVisuals = VIZ.build(require("./medium-data-visuals.json"));
-const largeDataJSON = require("./medium-data-visuals.json").filter(function(V){
+const smallDataVisuals  = VIZ.build(require("./small-data-visuals.json!"));
+const mediumDataVisuals = VIZ.build(require("./medium-data-visuals.json!"));
+const largeDataJSON = require("./medium-data-visuals.json!").filter(function(V){
     'use strict';
     return ((V.logs.indexOf("buyorder")===-1) && (V.logs.indexOf("sellorder")===-1));
 });
@@ -119,8 +119,8 @@ var app = (function(){
 	init: function init(){
 	    var editorElement = document.getElementById('editor');
 	    var editorOptions = {
-		schema: require('./configSchema.json'),
-		startval: require('./examples-highlow.json')
+		schema: require('./configSchema.json!'),
+		startval: require('./examples-highlow.json!')
 	    };
 	    editor = new window.JSONEditor(editorElement, editorOptions);
 	},
