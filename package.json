@@ -27,12 +27,10 @@
   "homepage": "https://github.com/drpaulbrewer/robot-trading-webapp#readme",
   "jspm": {
     "dependencies": {
-      "cwise": "npm:cwise@^1.0.9",
-      "glslify": "npm:glslify@^5.1.0",
       "json": "github:systemjs/plugin-json@^0.1.2",
       "json-editor": "npm:json-editor@^0.7.27",
       "positive-number-array": "npm:positive-number-array@^1.0.0",
-      "single-market-robot-simulator": "npm:single-market-robot-simulator@^0.31.0",
+      "single-market-robot-simulator": "npm:single-market-robot-simulator@^0.32.0",
       "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@^0.2.1",
       "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@^0.1.4",
       "systemjs/plugin-json": "github:systemjs/plugin-json@^0.1.2"

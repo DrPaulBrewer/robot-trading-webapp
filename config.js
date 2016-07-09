@@ -23,7 +23,7 @@ System.config({
     "json-editor": "npm:json-editor@0.7.27",
     "plotly.js": "npm:plotly.js@1.14.1",
     "positive-number-array": "npm:positive-number-array@1.0.0",
-    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.31.0",
+    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.32.0",
     "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.2.1",
     "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.1.4",
     "systemjs/plugin-json": "github:systemjs/plugin-json@0.1.2",
@@ -1586,18 +1586,18 @@ System.config({
     "npm:marching-simplex-table@1.0.0": {
       "convex-hull": "npm:convex-hull@1.0.3"
     },
-    "npm:market-agents@0.17.0": {
+    "npm:market-agents@0.19.5": {
       "async": "npm:async@2.0.0-rc.6",
       "clone": "npm:clone@1.0.2",
       "events": "github:jspm/nodelibs-events@0.1.1",
       "prob.js": "npm:prob.js@1.0.6",
       "random-js": "npm:random-js@1.0.8"
     },
-    "npm:market-engine@0.9.0": {
+    "npm:market-engine@0.10.1": {
       "events": "github:jspm/nodelibs-events@0.1.1"
     },
-    "npm:market-example-contingent@0.15.0": {
-      "market-engine": "npm:market-engine@0.9.0",
+    "npm:market-example-contingent@0.16.0": {
+      "market-engine": "npm:market-engine@0.10.1",
       "market-pricing": "npm:market-pricing@1.1.0",
       "partial-index": "npm:partial-index@1.7.2"
     },
@@ -2223,10 +2223,10 @@ System.config({
       "d3-array": "npm:d3-array@0.8.1",
       "transpluck": "npm:transpluck@1.0.2"
     },
-    "npm:single-market-robot-simulator@0.31.0": {
+    "npm:single-market-robot-simulator@0.32.0": {
       "async": "npm:async@2.0.0-rc.6",
-      "market-agents": "npm:market-agents@0.17.0",
-      "market-example-contingent": "npm:market-example-contingent@0.15.0"
+      "market-agents": "npm:market-agents@0.19.5",
+      "market-example-contingent": "npm:market-example-contingent@0.16.0"
     },
     "npm:slab-decomposition@1.0.2": {
       "binary-search-bounds": "npm:binary-search-bounds@1.0.0",

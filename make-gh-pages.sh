@@ -1,8 +1,7 @@
 #!/bin/bash -e
 rm -rf ./build
 mkdir ./build
-npm install
-browserify main.js -d -o ./build/bundle.js
+jspm bundle-sfx main.js ./build/bundle.js
 cp index.html ./build/
 cp index.css ./build/
 cd ./build
