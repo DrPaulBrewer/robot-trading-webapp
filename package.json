@@ -1,6 +1,6 @@
 {
   "name": "robot-trading-webapp-esnext",
-  "version": "0.60.0",
+  "version": "0.61.0",
   "description": "website generator for robot trading single page webapp",
   "main": " ",
   "dependencies": {},
