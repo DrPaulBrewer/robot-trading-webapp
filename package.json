@@ -5,6 +5,7 @@
   "main": " ",
   "dependencies": {},
   "devDependencies": {
+    "eslint": "^3.0.1",
     "jspm": "^0.16.39"
   },
   "scripts": {
@@ -32,7 +33,7 @@
       "positive-number-array": "npm:positive-number-array@^1.0.0",
       "single-market-robot-simulator": "npm:single-market-robot-simulator@^0.32.0",
       "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@^0.2.1",
-      "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@^0.1.4",
+      "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@^0.2.1",
       "systemjs/plugin-json": "github:systemjs/plugin-json@^0.1.2"
     },
     "devDependencies": {
