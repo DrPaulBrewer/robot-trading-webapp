@@ -3,11 +3,7 @@
 # it is not used to deploy to github 
 rm -rf ./build
 mkdir ./build
-npm update
-# without minifyify
-# browserify main.js -o ./build/bundle.js
-# with minifyify
-browserify main.js -d -o ./build/bundle.js
+jspm bundle-sfx main.js ./build/bundle.js
 cp index.html ./build/
 cp index.css ./build/
 cd ./build

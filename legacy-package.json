@@ -1,0 +1,37 @@
+{
+  "name": "robot-trading-webapp",
+  "version": "0.60.0",
+  "description": "website generator for robot trading single page webapp",
+  "main": " ",
+  "dependencies": {
+    "cwise": "^1.0.9",
+    "glslify": "^5.0.2",
+    "json-editor": "^0.7.25",
+    "plotly.js": "^1.12.0",
+    "positive-number-array": "^1.0.0",
+    "single-market-robot-simulator": "^0.31.0",
+    "single-market-robot-simulator-savezip": "^0.2.0",
+    "single-market-robot-simulator-viz-plotly": "^0.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.1"
+  },
+  "scripts": {
+    "make-gh-pages": "./make-gh-pages.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drpaulbrewer/robot-trading-webapp.git"
+  },
+  "keywords": [
+    "robot-trading",
+    "market-simulation"
+  ],
+  "author": "drpaulbrewer@eaftc.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drpaulbrewer/robot-trading-webapp/issues"
+  },
+  "homepage": "https://github.com/drpaulbrewer/robot-trading-webapp#readme"
+}
