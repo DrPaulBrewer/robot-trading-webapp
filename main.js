@@ -100,7 +100,7 @@ const app = ((function(){
             showSimulation(sim, slot);
         } 
 
-        let mysim = SMRS.runSimulation(simConfig, onDone, onPeriod); 
+        let mysim = new SMRS.Simulation(simConfig).run(onDone, onPeriod); 
         plotParameters(mysim, slot);
         if (mysim.config.periods>500){
             delete mysim.logs.buyorder;

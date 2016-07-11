@@ -23,7 +23,7 @@ System.config({
     "json-editor": "npm:json-editor@0.7.27",
     "plotly.js": "npm:plotly.js@1.14.1",
     "positive-number-array": "npm:positive-number-array@1.0.0",
-    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.32.1",
+    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.33.0",
     "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.2.1",
     "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.3.1",
     "systemjs/plugin-json": "github:systemjs/plugin-json@0.1.2",
@@ -2218,10 +2218,10 @@ System.config({
     },
     "npm:single-market-robot-simulator-viz-plotly@0.3.1": {
       "d3-array": "npm:d3-array@0.8.1",
-      "stepify-plotly": "npm:stepify-plotly@1.0.3",
+      "stepify-plotly": "npm:stepify-plotly@1.0.6",
       "transpluck": "npm:transpluck@1.0.2"
     },
-    "npm:single-market-robot-simulator@0.32.1": {
+    "npm:single-market-robot-simulator@0.33.0": {
       "async": "npm:async@2.0.0-rc.6",
       "market-agents": "npm:market-agents@0.19.5",
       "market-example-contingent": "npm:market-example-contingent@0.16.2"
@@ -2311,7 +2311,7 @@ System.config({
       "static-eval": "npm:static-eval@0.2.4",
       "through2": "npm:through2@0.4.2"
     },
-    "npm:stepify-plotly@1.0.3": {
+    "npm:stepify-plotly@1.0.6": {
       "clone": "npm:clone@1.0.2"
     },
     "npm:stream-browserify@1.0.0": {
