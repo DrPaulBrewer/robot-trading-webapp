@@ -49,7 +49,7 @@ const largeDataJSON = mediumDataVisualsJSON.filter(function(V){
     return ((V.logs.indexOf("buyorder")===-1) && (V.logs.indexOf("sellorder")===-1));
 });
 const largeDataVisuals = VIZ.build(largeDataJSON);
-const plotParamsSupplyDemand = VIZ.supplyDemand();
+const plotParamsSupplyDemand = VIZ.helpers.supplyDemand();
 
 const app = ((function(){
     

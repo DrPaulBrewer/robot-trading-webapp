@@ -23,9 +23,9 @@ System.config({
     "json-editor": "npm:json-editor@0.7.27",
     "plotly.js": "npm:plotly.js@1.14.1",
     "positive-number-array": "npm:positive-number-array@1.0.0",
-    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.32.0",
+    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.32.1",
     "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.2.1",
-    "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.1.4",
+    "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.3.1",
     "systemjs/plugin-json": "github:systemjs/plugin-json@0.1.2",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
@@ -772,9 +772,6 @@ System.config({
       "is-symbol": "npm:is-symbol@1.0.1"
     },
     "npm:es6-promise@3.0.2": {
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:es6-promise@3.2.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:escallmatch@1.4.2": {
@@ -1593,11 +1590,11 @@ System.config({
       "prob.js": "npm:prob.js@1.0.6",
       "random-js": "npm:random-js@1.0.8"
     },
-    "npm:market-engine@0.10.1": {
+    "npm:market-engine@0.10.2": {
       "events": "github:jspm/nodelibs-events@0.1.1"
     },
-    "npm:market-example-contingent@0.16.0": {
-      "market-engine": "npm:market-engine@0.10.1",
+    "npm:market-example-contingent@0.16.2": {
+      "market-engine": "npm:market-engine@0.10.2",
       "market-pricing": "npm:market-pricing@1.1.0",
       "partial-index": "npm:partial-index@1.7.2"
     },
@@ -1876,7 +1873,7 @@ System.config({
       "country-regex": "npm:country-regex@1.0.0",
       "d3": "npm:d3@3.5.17",
       "delaunay-triangulate": "npm:delaunay-triangulate@1.1.6",
-      "es6-promise": "npm:es6-promise@3.2.1",
+      "es6-promise": "npm:es6-promise@3.0.2",
       "events": "github:jspm/nodelibs-events@0.1.1",
       "fast-isnumeric": "npm:fast-isnumeric@1.1.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -2219,14 +2216,15 @@ System.config({
       "filesaver.js-npm": "npm:filesaver.js-npm@1.0.1",
       "jszip": "npm:jszip@3.0.0"
     },
-    "npm:single-market-robot-simulator-viz-plotly@0.1.4": {
+    "npm:single-market-robot-simulator-viz-plotly@0.3.1": {
       "d3-array": "npm:d3-array@0.8.1",
+      "stepify-plotly": "npm:stepify-plotly@1.0.3",
       "transpluck": "npm:transpluck@1.0.2"
     },
-    "npm:single-market-robot-simulator@0.32.0": {
+    "npm:single-market-robot-simulator@0.32.1": {
       "async": "npm:async@2.0.0-rc.6",
       "market-agents": "npm:market-agents@0.19.5",
-      "market-example-contingent": "npm:market-example-contingent@0.16.0"
+      "market-example-contingent": "npm:market-example-contingent@0.16.2"
     },
     "npm:slab-decomposition@1.0.2": {
       "binary-search-bounds": "npm:binary-search-bounds@1.0.0",
@@ -2312,6 +2310,9 @@ System.config({
       "shallow-copy": "npm:shallow-copy@0.0.1",
       "static-eval": "npm:static-eval@0.2.4",
       "through2": "npm:through2@0.4.2"
+    },
+    "npm:stepify-plotly@1.0.3": {
+      "clone": "npm:clone@1.0.2"
     },
     "npm:stream-browserify@1.0.0": {
       "events": "github:jspm/nodelibs-events@0.1.1",
