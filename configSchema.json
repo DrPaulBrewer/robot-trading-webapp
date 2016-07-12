@@ -79,27 +79,52 @@
 		"description": "Individual Seller Poisson Arrival Rate (asks/sec per agent)",
 		"default": 0.20
 	    },
+	    "buyerAgentType": {
+		"description": "Buyer Types to use in rotation when creating buyers",
+		"propertyOrder": 81,
+		"type": "array",
+		"uniqueItems": false,
+		"items": {
+		    "type": "string",
+		    "enum": ["ZIAgent","UnitAgent","KaplanSniperAgent"]
+		},
+		"format": "table",
+		"default": ["ZIAgent"]
+	    },
+	    "sellerAgentType": {
+		"description": "Seller Types to use in rotation when creating sellers",
+		"propertyOrder": 82,
+		"type": "array",
+		"uniqueItems": false,
+		"items": {
+		    "type": "string",
+		    "enum": ["ZIAgent","UnitAgent","KaplanSniperAgent"]
+		},
+		"format": "table",
+		"default": ["ZIAgent"]
+	    },
+
 	    "integer":{
 		"type": "boolean",
-		"propertyOrder": 81,
+		"propertyOrder": 86,
 		"description": "Use integer prices",
 		"default": false
 	    },
 	    "keepPreviousOrders":{
 		"type": "boolean",
-		"propertyOrder": 82,
+		"propertyOrder": 87,
 		"description": "true causes agents to not request cancellation/replacement of old orders with their new order, keeping the old orders.  Setting true will lead to setlement issues with zi traders; false submits 'cancel/replace' orders which first clear orders from the same agent",
 		"default": false
 	    },
 	    "ignoreBudgetConstraint":{
 		"type": "boolean",
-		"propertyOrder": 83,
+		"propertyOrder": 88,
 		"description": "false uses Marginal Cost / Marginal Value as limits for zi Agent random asks/bids; true ignores MC/MV and generates random asks/bids on [minPrice,maxPrice]",
 		"default": false
 	    },
 	    "silent":{
 		"type": "boolean",
-		"propertyOrder": 85,
+		"propertyOrder": 89,
 		"description": "false emits more console.log messages, true suppresses",
 		"default": true
 	    },
