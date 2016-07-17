@@ -4,6 +4,7 @@
 /* global sims:true, Plotly:true */
 
 import "json-editor"; // defines window.JSONEditor
+import jsonEditorPositiveNumberArrayTextarea from "json-editor-positive-number-array-textarea"; // window.JSONEditor numeric array textarea input customization
 import * as SMRS from "single-market-robot-simulator";
 import * as VIZ from "single-market-robot-simulator-viz-plotly";
 import saveZip from "single-market-robot-simulator-savezip";
@@ -11,36 +12,13 @@ import smallDataVisualsJSON from "./small-data-visuals.json!";
 import mediumDataVisualsJSON from "./medium-data-visuals.json!";
 import configSchema from "./configSchema.json!";
 import examplesHighLow from "./examples-highlow.json!";
-import positiveNumberArray from "positive-number-array";
 
 /* enable use of twitter bootstrap 3 by json editor. requires bootstrap 3 css/js to be loaded in index.html */
 
 window.JSONEditor.defaults.options.theme = 'bootstrap3';
 window.JSONEditor.defaults.options.iconlib = 'bootstrap3';
 
-/* defines a function accepting string, returning array of positive numbers or undefined */
-
-/* suggested by json-editor README.md lines 1122-1165 */
-
-window.JSONEditor.defaults.resolvers.unshift(function(schema){
-    if (schema.type === "array" && schema.format === "textarea" &&  schema.flavor==="positiveNumber"){
-        return "positiveNumber";
-    }
-});
-
-/* from an examination of json-editor/src/editors/number.js */
-
-window.JSONEditor.defaults.editors.positiveNumber = window.JSONEditor.defaults.editors.string.extend({
-    sanitize(value){
-        return (positiveNumberArray(value) || []).join(" ");
-    },
-    getNumColumns(){
-        return 2;
-    },
-    getValue(){
-        return positiveNumberArray(this.value) || [];
-    }
-});
+jsonEditorPositiveNumberArrayTextarea();
 
 const smallDataVisuals = VIZ.build(smallDataVisualsJSON);
 const mediumDataVisuals = VIZ.build(mediumDataVisualsJSON);

@@ -21,6 +21,7 @@ System.config({
     "glslify": "npm:glslify@5.1.0",
     "json": "github:systemjs/plugin-json@0.1.2",
     "json-editor": "npm:json-editor@0.7.27",
+    "json-editor-positive-number-array-textarea": "npm:json-editor-positive-number-array-textarea@0.3.0",
     "plotly.js": "npm:plotly.js@1.14.1",
     "positive-number-array": "npm:positive-number-array@1.0.0",
     "single-market-robot-simulator": "npm:single-market-robot-simulator@0.38.0",
@@ -1405,6 +1406,9 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "jsbn": "npm:jsbn@0.1.0"
+    },
+    "npm:json-editor-positive-number-array-textarea@0.3.0": {
+      "positive-number-array": "npm:positive-number-array@1.0.0"
     },
     "npm:json-stable-stringify@0.0.1": {
       "jsonify": "npm:jsonify@0.0.0"
