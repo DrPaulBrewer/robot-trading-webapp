@@ -1,0 +1,45 @@
+.nav-tabs.nav-justified > li > a {
+    text-align:left !important;
+}
+#runError {
+    color: #0000ff;
+}
+label {
+    font-size: x-large;
+}
+input {
+    font-size: large;
+}
+select {
+    height: 50px;
+    font-size: large;
+}
+textarea {
+    width: 300px;
+    height: 120px;
+    font-size: large;
+}
+.paramPlot {
+    height: 450px;
+}
+.resultPlot {
+    height: 450px;
+}
+/*
+ * Spinner from @Flion http://stackoverflow.com/users/977206/flion 
+ * see http://stackoverflow.com/a/26283602/103081
+ */
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}

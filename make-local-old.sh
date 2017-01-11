@@ -3,12 +3,9 @@
 # it is not used to deploy to github 
 rm -rf ./build
 mkdir ./build
-rm -f src/*~ src/pkg/*~ json/*~ 
-eslint "src/**"
-jspm bundle-sfx src/main.js ./build/bundle.js
+jspm bundle-sfx main.js ./build/bundle.js
 cp index.html ./build/
 cp index.css ./build/
-cp plotly-min.js ./build/
 cd ./build
 # The finished website is in ./build
 # Put *your* code to deploy it below this line

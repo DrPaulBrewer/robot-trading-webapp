@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+<!-- Modal For Trash -->
+<div class="modal fade" id="trashModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Should these parameters be moved to the trash?</h4>
+      </div>
+      <div class="modal-body">
+	<h3>Sending scenario parameters to trash is unusual</h3>
+	<h4>Tips:</h4>
+	<ul>
+	  <li>Do not use trash to clear the screen.  Simply select >Run to run again and the screen will clear automatically. Refreshing <span class="glyphicon glyphicon-repeat"></span> the browser window also clears the previous run. </li>
+	  <li>Trash is used only to discard useless scenario parameter settings, such as typos, incorrect settings, or obsolete settings no longer needed. </li>
+	  <li>Do not trash scenarios that other people might be looking for later. </li>
+	  <li>If you trash some parameters and later want those restored, look in the trash tab </li>
+	  <li>Clicking the Keep button is safe and does nothing beyond dismissing this message</li>
+	</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Keep</button>
+        <button type="button" class="btn btn-danger move-to-trash" data-dismiss="modal">Trash</button>
+      </div>
+    </div>
+  </div>
+</div>
+<h1>Robot Trading Lab</h1>
+<p>Copyright 2016 <a href="mailto:drpaulbrewer@eaftc.com">Paul Brewer</a><br/>
+Economic &amp; Financial Technology Consulting LLC</p>
+<ul class="nav nav-tabs">
+  <li class="nav active"><a href="#A" data-toggle="tab">App</a></li>
+  <li class="nav"><a href="#edit" id="editLink" data-toggle="tab">Edit</a></li>
+  <li class="nav"><a href="#scaleup" data-toggle="tab">Scale Up</a></li>
+  <li class="nav"><a href="#archive" data-toggle="tab">Archive</a></li>
+  <li class="nav render-trash"><a href="#trash" data-toggle="tab"><span class="glyphicon glyphicon-trash"></span> Trash</a></li>
+  <li class="nav"><a href="#version" data-toggle="tab">Version</a></li>
+</ul>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="A">
+    <div class="row col-lg-12">
+      <label class="col-lg-1" for="selector">Scenario:</label>
+      <select class="col-lg-9" id="selector"></select>
+      <button class="btn btn-danger show-trash-modal" data-toggle="modal" data-target="#trashModal">
+	<span class="glyphicon glyphicon-trash"></span> Trash
+      </button>
+    </div>
+    <div class="row col-lg-12" role="group">
+      <div class="btn-group" role="group">
+	<button class="change-periods btn" value="1">1</button>
+	<button class="change-periods btn" value="10">10</button>
+	<button class="change-periods btn" value="20">20</button>
+	<button class="change-periods btn" value="50">50</button>
+	<button class="change-periods btn" value="100">100</button>
+	<button class="change-periods btn" value="200">200</button>
+	<button class="change-periods btn" value="500">500</button>
+	<button class="change-periods btn" value="1000">1000</button>
+      </div>
+      <label class="col-lg-1" for="periodsSelector">Periods:</label>
+      <input type="number" class="col-lg-1 periods change-periods" id="periodsSelector"/>
+      <span class="glyphicon glyphicon-time"></span><span class="estimated-running-time"></span>
+    </div>
+    <div class="row col-lg-12 btn-group btn-group-lg" role="group">
+      <button id="runButton" class="col-lg-4 btn btn-primary">
+        <span class="glyphicon glyphicon-play"></span>Run</button>
+      <button id="uploadButton" class="col-lg-3 btn btn-warning disabled postrun">
+        <span class="glyphicon glyphicon-cloud-upload"></span>Upload data to cloud
+      </button>
+      <button id="downloadButton" class="col-lg-4 btn btn-success disabled postrun">
+        <span class="glyphicon glyphicon-floppy-save"></span>Generate data.zip file
+      </button>
+    </div>
+    <p class="row col-lg-6" id="runError"></p>
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>Result</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+	<span class="visualization-selector">
+	  <select id="vizselect">
+	  </select>
+	</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot0"></div>
+      <div class="resultPlot col-md-7" id="resultPlot0"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot1"></div>
+      <div class="resultPlot col-md-7" id="resultPlot1"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot2"></div>
+      <div class="resultPlot col-md-7" id="resultPlot2"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot3"></div>
+      <div class="resultPlot col-md-7" id="resultPlot3"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot4"></div>
+      <div class="resultPlot col-md-7" id="resultPlot4"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot5"></div>
+      <div class="resultPlot col-md-7" id="resultPlot5"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot6"></div>
+      <div class="resultPlot col-md-7" id="resultPlot6"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot7"></div>
+      <div class="resultPlot col-md-7" id="resultPlot7"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot8"></div>
+      <div class="resultPlot col-md-7" id="resultPlot8"></div>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-md-4"  id="paramPlot9"></div>
+      <div class="resultPlot col-md-7" id="resultPlot9"></div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="edit">
+    <h2>Editor</h2>
+    <button class="save-button col-lg-6 btn btn-lg btn-success">
+      <span class="glyphicon glyphicon-cloud-upload"></span>Save
+    </button>
+    <button class="undo-button col-lg-6 btn btn-lg btn-danger">
+      <span class="glyphicon glyphicon-remove"></span> Undo changes
+    </button>
+    <div class="container col-lg-12" id="editor">
+    </div>
+  </div>
+  <div class="tab-pane fade" id="scaleup">
+    <div class="container pull-left text-left col-lg-4">
+      <div>
+        <h3 class="configTitle"></h3>
+      </div>
+      <div>
+        <table class="table-condensed">
+          <thead>
+            <tr><th>Item/Pane</th><th>Buyers</th><th>Sellers</th></tr>
+          </thead>
+          <tbody id="xsimbs">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="container pull-right text-left col-lg-8">
+      <div class="form-inline row">
+        <select id="xfactor" class="form-control col-lg-1">
+          <option value="2">x2</option>
+          <option value="3">x3</option>
+          <option value="4">x4</option>
+          <option value="5">x5</option>
+          <option value="10">x10</option>
+          <option value="20">x20</option>
+          <option value="50">x50</option>
+          <option value="100">x100</option>
+        </select>
+        <button class="col-lg-2 btn btn-lg btn-primary" id="interpolateButton">
+          <span class="glyphicon glyphicon-resize-full"></span>Interpolate
+        </button>
+        <button class="col-lg-2 btn btn-lg btn-default" id="duplicateButton">
+          <span class="glyphicon glyphicon-duplicate"></span>Duplicate
+        </button>
+	<button class="undo-button col-lg-1 btn btn-lg btn-danger">
+	  <span class="glyphicon glyphicon-remove"></span> Undo
+	</button>
+        <button class="save-button col-lg-2 btn btn-lg btn-success">
+          <span class="glyphicon glyphicon-cloud-upload"></span>Save
+        </button>
+      </div>
+      <h3>Scales up by increasing the number of buyers and sellers by a factor, and interpolating or duplicating agents' cost or value parameters</h3>
+    </div>
+    <div class="row">
+      <div class="paramPlot col-xs-11"  id="paramPlotScaleUp"></div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="archive">
+    <p class="h3">The archive of uploaded data is located at <a target="_blank" href="/archive/" class="innerurl"></a></p>
+  </div>
+  <div class="tab-pane fade" id="trash">
+    <h2>Click on any trashed item to open it in the editor</h2>
+    <div class="list-group" id="trashList">
+    </div>
+  </div>
+  <div class="tab-pane fade" id="version">
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- Add compiled and minified plotly.js JavaScript -->
+<!-- Included locally instead of managed by jspm because of issues like  https://github.com/plotly/plotly.js/issues/22 and https://github.com/jspm/jspm-cli/issues/1610 -->
+<!-- Plotly is MIT-Licensed from Plotly, Inc. -->
+<script src="plotly-min.js"></script>
+<script src="bundle.js"></script>
+</body>
+</html>
