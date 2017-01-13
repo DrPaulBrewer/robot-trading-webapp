@@ -1,9 +1,10 @@
 #!/bin/bash -e
 rm -rf ./build
 mkdir ./build
-jspm bundle-sfx main.js ./build/bundle.js
+jspm bundle-sfx src/main.js ./build/bundle.js
 cp index.html ./build/
 cp index.css ./build/
+cp plotly-min.js ./build/
 cd ./build
 # The finished website is in ./build
 # Delete the code below and substitue *your* deployment code here
