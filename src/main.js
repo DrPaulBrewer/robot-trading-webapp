@@ -70,7 +70,11 @@ $('li.render-trash').click(()=>(app.renderTrash()));
 $('#runButton').click(()=>(app.run()));
 $('button.save-button').click(()=>(app.save()));
 $('#downloadButton').click(()=>(app.downloadData()));
-$('#uploadButton').click(()=>(app.uploadData()));
+
+// with DB from single-robot-market-simulator-db-webdismay use $('#uploadButton').click(()=>(app.uploadData()));
+// with DB from single-robot-market-simulator-db-local upload should be disabled with an alert message.
+
+$('#uploadButton').click(()=>(window.alert("upload to private cloud unavailable in demo mode. Contact drpaulbrewer@eaftc.com to discuss private cloud simulations.")));
 $('#interpolateButton').click(()=>(app.interpolate()));
 $('#duplicateButton').click(()=>(app.duplicate()));
 $('button.change-periods').on('click', ((evt)=>app.setPeriods(evt.target.value)));
