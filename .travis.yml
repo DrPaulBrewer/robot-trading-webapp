@@ -3,8 +3,8 @@ node_js:
   - stable
 install:
   - npm install
-  - jspm install
   - jspm config registries.github.timeouts.lookup 120
+  - jspm install
 script:
   - npm run make-gh-pages
 env:
