@@ -17,7 +17,7 @@
   "private": true,
   "jspm": {
     "dependencies": {
-      "clone": "npm:clone@^1.0.2",
+      "clone": "npm:clone@^2.1.0",
       "cumulative-distribution-function": "npm:cumulative-distribution-function@^1.0.2",
       "json": "github:systemjs/plugin-json@^0.1.2",
       "json-editor": "npm:json-editor@^0.7.27",
@@ -25,6 +25,8 @@
       "market-pricing": "npm:market-pricing@^1.1.0",
       "positive-number-array": "npm:positive-number-array@^1.1.0",
       "single-market-robot-simulator": "npm:single-market-robot-simulator@^0.52.0",
+      "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@^0.1.0",
+      "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@^0.1.0",
       "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@^0.6.0",
       "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@^0.5.0",
       "stepify-plotly": "npm:stepify-plotly@^1.0.3",

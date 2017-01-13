@@ -17,7 +17,7 @@ System.config({
     "babel": "npm:babel-core@5.8.38",
     "babel-plugin-transform-es2015-shorthand-properties": "npm:babel-plugin-transform-es2015-shorthand-properties@6.8.0",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "clone": "npm:clone@1.0.2",
+    "clone": "npm:clone@2.1.0",
     "core-js": "npm:core-js@1.2.7",
     "cumulative-distribution-function": "npm:cumulative-distribution-function@1.0.2",
     "cwise": "npm:cwise@1.0.9",
@@ -29,6 +29,9 @@ System.config({
     "plotly.js": "npm:plotly.js@1.14.1",
     "positive-number-array": "npm:positive-number-array@1.1.0",
     "single-market-robot-simulator": "npm:single-market-robot-simulator@0.52.1",
+    "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@0.1.8",
+    "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@0.1.1",
+    "single-market-robot-simulator-db-webdismay": "npm:single-market-robot-simulator-db-webdismay@0.1.0",
     "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0",
     "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.5.0",
     "stepify-plotly": "npm:stepify-plotly@1.0.6",
@@ -533,6 +536,9 @@ System.config({
     "npm:clone@1.0.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "vm": "github:jspm/nodelibs-vm@0.1.0"
+    },
+    "npm:clone@2.1.0": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
     "npm:colormap@2.2.0": {
       "arraytools": "npm:arraytools@1.1.2",
@@ -2283,6 +2289,16 @@ System.config({
     "npm:simplify-planar-graph@2.0.1": {
       "robust-orientation": "npm:robust-orientation@1.1.3",
       "simplicial-complex": "npm:simplicial-complex@0.3.3"
+    },
+    "npm:single-market-robot-simulator-app-framework@0.1.8": {
+      "clone": "npm:clone@2.1.0",
+      "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0"
+    },
+    "npm:single-market-robot-simulator-db-local@0.1.1": {
+      "deep-equal": "npm:deep-equal@1.0.1"
+    },
+    "npm:single-market-robot-simulator-db-webdismay@0.1.0": {
+      "webdismay": "npm:webdismay@0.9.2"
     },
     "npm:single-market-robot-simulator-savezip@0.6.0": {
       "filesaver.js-npm": "npm:filesaver.js-npm@1.0.1",
