@@ -24,10 +24,10 @@ System.config({
     "glslify": "npm:glslify@5.1.0",
     "json": "github:systemjs/plugin-json@0.1.2",
     "json-editor": "npm:json-editor@0.7.28",
-    "json-editor-positive-number-array-textarea": "npm:json-editor-positive-number-array-textarea@0.3.2",
+    "json-editor-positive-number-array-textarea": "npm:json-editor-positive-number-array-textarea@0.4.0",
     "market-pricing": "npm:market-pricing@1.1.0",
     "plotly.js": "npm:plotly.js@1.14.1",
-    "positive-number-array": "npm:positive-number-array@1.1.0",
+    "positive-number-array": "npm:positive-number-array@1.2.0",
     "single-market-robot-simulator": "npm:single-market-robot-simulator@0.52.1",
     "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@0.1.8",
     "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@0.1.1",
@@ -1464,8 +1464,8 @@ System.config({
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "jsbn": "npm:jsbn@0.1.0"
     },
-    "npm:json-editor-positive-number-array-textarea@0.3.2": {
-      "positive-number-array": "npm:positive-number-array@1.1.0"
+    "npm:json-editor-positive-number-array-textarea@0.4.0": {
+      "positive-number-array": "npm:positive-number-array@1.2.0"
     },
     "npm:json-stable-stringify@0.0.1": {
       "jsonify": "npm:jsonify@0.0.0"
@@ -2310,7 +2310,6 @@ System.config({
       "transpluck": "npm:transpluck@1.0.2"
     },
     "npm:single-market-robot-simulator@0.52.1": {
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
       "market-agents": "npm:market-agents@0.30.1",
       "market-example-contingent": "npm:market-example-contingent@0.17.0"
     },
