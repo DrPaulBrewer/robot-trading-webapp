@@ -109,16 +109,26 @@
 			"default": 10
 		    },
 		    "buyerRate":{
-			"type": "number",
+			"type": "array",
+			"items": {
+			    "type": "number"
+			},
+			"format": "textarea",
+			"flavor": "positiveNumber",
 			"propertyOrder": 50,
-			"description": "Individual Buyer Poisson Arrival Rate (bids/sec per agent)",
-			"default": 0.20
+			"description": "Individual Buyer Poisson Arrival Rates (bids/sec per agent)",
+			"default": [0.20]
 		    },
 		    "sellerRate":{
-			"type": "number",
+			"type": "array",
+			"items": {
+			    "type": "number"
+			},
+			"format": "textarea",
+			"flavor": "positiveNumber",
 			"propertyOrder": 60,
-			"description": "Individual Seller Poisson Arrival Rate (asks/sec per agent)",
-			"default": 0.20
+			"description": "Individual Seller Poisson Arrival Rates (asks/sec per agent)",
+			"default": [0.20]
 		    },
 		    "buyerAgentType": {
 			"description": "Buyer Types to use in rotation when creating buyers",
