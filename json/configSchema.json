@@ -137,7 +137,7 @@
 			"uniqueItems": false,
 			"items": {
 			    "type": "string",
-			    "enum": ["ZIAgent","UnitAgent","OneupmanshipAgent","KaplanSniperAgent"]
+			    "enum": ["ZIAgent","UnitAgent","OneupmanshipAgent","MidpointAgent","KaplanSniperAgent"]
 			},
 			"format": "table",
 			"default": ["ZIAgent"]
@@ -149,7 +149,7 @@
 			"uniqueItems": false,
 			"items": {
 			    "type": "string",
-			    "enum": ["ZIAgent","UnitAgent","OneupmanshipAgent","KaplanSniperAgent"]
+			    "enum": ["ZIAgent","UnitAgent","OneupmanshipAgent","MidpointAgent","KaplanSniperAgent"]
 			},
 			"format": "table",
 			"default": ["ZIAgent"]
