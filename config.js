@@ -22,7 +22,7 @@ System.config({
     "json-editor-positive-number-array-textarea": "npm:json-editor-positive-number-array-textarea@0.4.0",
     "single-market-robot-simulator": "npm:single-market-robot-simulator@0.56.1",
     "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@0.1.8",
-    "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@0.1.1",
+    "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@1.0.0",
     "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0",
     "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.6.0",
     "systemjs/plugin-json": "github:systemjs/plugin-json@0.1.2",
@@ -174,7 +174,7 @@ System.config({
       "clone": "npm:clone@2.1.0",
       "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0"
     },
-    "npm:single-market-robot-simulator-db-local@0.1.1": {
+    "npm:single-market-robot-simulator-db-local@1.0.0": {
       "deep-equal": "npm:deep-equal@1.0.1"
     },
     "npm:single-market-robot-simulator-savezip@0.6.0": {

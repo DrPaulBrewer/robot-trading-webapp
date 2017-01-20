@@ -46,6 +46,7 @@ const Visuals = {
 
 // set if unset
 
+DB.init(window.sessionStorage);
 DB.openList("saveList", [examplesHighLow]);
 
 const app = new AF.App({
