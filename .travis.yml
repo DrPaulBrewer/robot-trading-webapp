@@ -6,6 +6,7 @@ install:
   - jspm config registries.github.auth ${JSPM_GITHUB_AUTH_TOKEN}
   - jspm config registries.github.timeouts.lookup 300
   - jspm config registries.github.timeouts.download 600
+  - jspm registry export github
   - jspm install
 script:
   - npm run make-gh-pages
