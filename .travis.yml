@@ -3,6 +3,7 @@ node_js:
   - stable
 install:
   - npm install
+  - jspm config registries.github.auth ${GH_TOKEN}
   - jspm config registries.github.timeouts.lookup 300
   - jspm config registries.github.timeouts.download 600
   - jspm install
