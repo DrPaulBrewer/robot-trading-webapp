@@ -1,6 +1,7 @@
 [
 { "f": "plotOHLCTimeSeries"},
 { "f": "plotBidAskTradeTimeSeries"},
+{ "f": "plotProfitTimeSeries"},
 { "f": "plotFactory",
   "title": "trade volume by period",
   "log": "volume",
