@@ -24,7 +24,7 @@ System.config({
     "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@0.1.8",
     "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@1.0.0",
     "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0",
-    "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.8.0",
+    "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.8.1",
     "systemjs/plugin-json": "github:systemjs/plugin-json@0.1.2",
     "whatwg-fetch": "npm:whatwg-fetch@1.1.1",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -181,7 +181,7 @@ System.config({
       "filesaver.js-npm": "npm:filesaver.js-npm@1.0.1",
       "jszip": "npm:jszip@3.1.3"
     },
-    "npm:single-market-robot-simulator-viz-plotly@0.8.0": {
+    "npm:single-market-robot-simulator-viz-plotly@0.8.1": {
       "d3-array": "npm:d3-array@0.8.1",
       "stepify-plotly": "npm:stepify-plotly@1.0.6",
       "transpluck": "npm:transpluck@1.0.2"
