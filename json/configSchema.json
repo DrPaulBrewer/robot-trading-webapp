@@ -74,6 +74,22 @@
 	    "items":{
 		"type": "object",
 		"properties": {
+		    "titleReplace": {
+			"type": "string",
+			"propertyOrder": 1,
+			"description": "Plot Title (replacement):"
+		    },
+		    "titleAppend": {
+			"type": "string",
+			"propertyOrder": 2,
+			"description": "Plot Title (append):"
+		    },
+		    "titlePrepend": {
+			"type": "string",
+			"propertyOrder": 3,
+			"description": "Plot Title (prepend):"
+			"default": ""
+		    },
 		    "buyerValues": {
 			"type": "array",
 			"items": {
