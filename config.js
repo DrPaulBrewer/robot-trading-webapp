@@ -20,7 +20,7 @@ System.config({
     "json": "github:systemjs/plugin-json@0.1.2",
     "json-editor": "npm:json-editor@0.7.28",
     "json-editor-positive-number-array-textarea": "npm:json-editor-positive-number-array-textarea@0.4.0",
-    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.56.1",
+    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.58.1",
     "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@0.2.1",
     "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@1.0.0",
     "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0",
@@ -186,11 +186,12 @@ System.config({
       "stepify-plotly": "npm:stepify-plotly@1.0.6",
       "transpluck": "npm:transpluck@1.0.2"
     },
-    "npm:single-market-robot-simulator@0.56.1": {
+    "npm:single-market-robot-simulator@0.58.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "market-agents": "npm:market-agents@0.31.0",
       "market-example-contingent": "npm:market-example-contingent@0.18.0",
-      "positive-number-array": "npm:positive-number-array@1.2.0"
+      "positive-number-array": "npm:positive-number-array@1.2.0",
+      "simple-isomorphic-logger": "npm:simple-isomorphic-logger@1.0.2"
     },
     "npm:stepify-plotly@1.0.6": {
       "clone": "npm:clone@1.0.2"
