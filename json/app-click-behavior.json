@@ -1,14 +1,14 @@
 [
-    ['#vizselect', 'setVisualNumber'],
-    ['button.move-to-trash', 'moveToTrash'],
-    ['li.render-trash', 'renderTrash'],
-    ['#runButton', 'run'],
-    ['button.save-button', 'save'],
-    ['#downloadButton', 'downloadData'],
-    ['#interpolateButton', 'interpolate'],
-    ['#duplicateButton', 'duplicate'],
-    ['button.change-periods','setPeriods'],
-    ['.change-periods', 'setPeriods', 'change'],
-    ['button.undo-button', 'undo'],
-    ['span.glyphicon-time', 'estimateTime']
+    ["#vizselect", "setVisualNumber"],
+    ["button.move-to-trash", "moveToTrash"],
+    ["li.render-trash", "renderTrash"],
+    ["#runButton", "run"],
+    ["button.save-button", "save"],
+    ["#downloadButton", "downloadData"],
+    ["#interpolateButton", "interpolate"],
+    ["#duplicateButton", "duplicate"],
+    ["button.change-periods","setPeriods"],
+    [".change-periods", "setPeriods", "change"],
+    ["button.undo-button", "undo"],
+    ["span.glyphicon-time", "estimateTime"]
 ]
