@@ -16,6 +16,7 @@ import mediumDataVisualsJSON from "../json/medium-data-visuals.json!";
 import configSchema from "../json/configSchema.json!";
 import examplesHighLow from "../json/examples-highlow.json!";
 import packageJSON from "../package.json!";
+import behavior from "../json/app-click-behavior.json!";
 
 $('#version').html("<p>Software package information from package.json</p><pre>"+JSON.stringify(packageJSON, null, 4)+"</pre>");
 
@@ -53,33 +54,22 @@ const app = new AF.App({
     SMRS,
     DB,
     Visuals,
+    behavior,
     saveList: "saveList",
     trashList: "trashList",
     editorConfigSchema: configSchema,
     editorStartValue: examplesHighLow
 });
 
+// with DB from single-robot-market-simulator-db-webdismay use $('#uploadButton').click(()=>(app.uploadData()));
+// with DB from single-robot-market-simulator-db-local upload should be disabled with an alert message.
+
+$('#uploadButton').click(()=>(window.alert("upload to private cloud unavailable in demo mode. Contact drpaulbrewer@eaftc.com to discuss private cloud simulations.")));
+
+$("a.innerurl").each(function(){$(this).html(this.href);});
+$('li a').click(function(){ setTimeout(()=>(app.refresh()), 200); });
 
 $(function(){
     app.init();
 });
 
-$('#vizselect').click( ((evt)=>(app.setVisualNumber(evt.target.value))) );
-$("a.innerurl").each(function(){$(this).html(this.href);});
-$('button.move-to-trash').click(()=>(app.moveToTrash()));
-$('li.render-trash').click(()=>(app.renderTrash()));
-$('#runButton').click(()=>(app.run()));
-$('button.save-button').click(()=>(app.save()));
-$('#downloadButton').click(()=>(app.downloadData()));
-
-// with DB from single-robot-market-simulator-db-webdismay use $('#uploadButton').click(()=>(app.uploadData()));
-// with DB from single-robot-market-simulator-db-local upload should be disabled with an alert message.
-
-$('#uploadButton').click(()=>(window.alert("upload to private cloud unavailable in demo mode. Contact drpaulbrewer@eaftc.com to discuss private cloud simulations.")));
-$('#interpolateButton').click(()=>(app.interpolate()));
-$('#duplicateButton').click(()=>(app.duplicate()));
-$('button.change-periods').on('click', ((evt)=>app.setPeriods(evt.target.value)));
-$('.change-periods').on('change', ((evt)=>app.setPeriods(evt.target.value)));
-$('button.undo-button').click(()=>(app.undo()));
-$('li a').click(function(){ setTimeout(()=>(app.refresh()), 200); });
-$('span.glyphicon-time').on('click', ()=>(app.estimateTime()));
