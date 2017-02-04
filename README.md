@@ -11,12 +11,10 @@ You do not need to install anything to use this simulator.
 
 The simulator is pre-configured with a simple comparison of markets with different supply/demand intersection.  
 
-Clicking the RUN button will run this simulation for 100 periods.  Once the simulation is complete, another button
-allows cycling among the available charts for visuazliation of the data. 
+Clicking the RUN button will run this simulation.  The number of periods can be selected from the interface.
+Once the simulation has been run, there is a choice of visualizations from the pulldown menu.
 
-Parameters of the simulations can be changed by clicking the "+" button to expand the editor.
-
-Further elaboration / explanation of the various parameters will be added to this documentation as time permits.  
+Parameters of the simulations can be changed by clicking the "EDIT" tab at the top of the screen to expand the editor.
 
 If you want to modify the simulator to work differently, or program your own agents, you may wish to 
 install this code to your own server and/or create a fork.
@@ -31,11 +29,8 @@ in Linux, Javascript browser and server development, and agent-based economic si
 You need
 
 * a Linux-based web server
-* a nodejs development environment 
-* typically these Javascript development pre-requisites are installed globally:
-```
-     npm install -g browserify
-     npm install -g minifyify
+* a nodejs development environment
+* familiarity with ES6 JavaScript is essential; some knowledge of jspm and npm package management is also useful  
 ```
 Then:
 
@@ -63,6 +58,7 @@ Significant modules, including modules authored by others, include:
 * [market-engine](https://www.npmjs.com/package/market-engine) scaffolding for markets with lists of orders, pre-order checks, cancellation, and expiration
 * [market-example-contingent](https://www.npmjs.com/package/market-example-contingent) event-driven sequential double auction market with buy, sell, stop limit, OCO one-cancels-other and OSO one-sends-other functionality
 * [single-market-robot-simulator](https://www.npmjs.com/package/single-market-robot-simulator) Multiple period simulations, either syncronous or asynchronous, yielding a data log files or arrays.
+* [single-market-robot-simulator-app-framework](https://www.npmjs.com/package/single-market-robot-simulator-app-framework) Framework of web app providing functions such as run, edit, download data, plot selection,  etc.
 * [single-market-robot-simulator-viz-plotly](https://www.npmjs.com/package/single-market-robot-simulator-viz-plotly) Extraction and transformation of simulation data to formats needed for specific charts in Plotly
 * [single-market-robot-simulator-savezip](https://www.npmjs.com/package/single-market-robot-simulator-savezip) saves configuration and data of an array of simulations as a .zip file using 3rd parties jszip and filesaver.js modules.
 * [plotly](https://www.npmjs.com/package/plotly.js) Plotly open source scientific plotting package (commercial 3rd party module)
@@ -71,10 +67,9 @@ Significant modules, including modules authored by others, include:
 
 ##Tests
 
-All important functionality should be conducted in an imported module subject to automated testing.
-Each imported module above has tests that can be run by running "npm test" in that module's directory.
+Most imported modules above has tests that can be run by running "npm test" in that module's directory.
 
-The top level code, which processes user input and displays the results, does not include automated tests.
+The top level code, which processes user input and displays the results, does not include automated tests at this time.
 
 ##Copyright
 
