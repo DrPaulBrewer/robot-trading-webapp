@@ -21,7 +21,7 @@ System.config({
     "json-editor": "npm:json-editor@0.7.28",
     "json-editor-positive-number-array-textarea": "npm:json-editor-positive-number-array-textarea@0.4.0",
     "single-market-robot-simulator": "npm:single-market-robot-simulator@0.61.0",
-    "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@1.0.3",
+    "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@1.1.0",
     "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@1.0.0",
     "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0",
     "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.8.3",
@@ -109,13 +109,13 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "core-js": "npm:core-js@2.3.0",
       "es6-promise": "npm:es6-promise@3.0.2",
-      "lie": "npm:lie@3.1.0",
+      "lie": "npm:lie@3.1.1",
       "pako": "npm:pako@1.0.4",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "stream": "github:jspm/nodelibs-stream@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:lie@3.1.0": {
+    "npm:lie@3.1.1": {
       "immediate": "npm:immediate@3.0.6",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
@@ -170,7 +170,7 @@ System.config({
       "stream-browserify": "npm:stream-browserify@1.0.0",
       "string_decoder": "npm:string_decoder@0.10.31"
     },
-    "npm:single-market-robot-simulator-app-framework@1.0.3": {
+    "npm:single-market-robot-simulator-app-framework@1.1.0": {
       "clone": "npm:clone@2.1.0",
       "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0"
     },
