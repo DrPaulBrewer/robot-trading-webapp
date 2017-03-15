@@ -49,7 +49,7 @@ cp -a * /var/web/192.168.1.10/zi/
 ```
 You need to change `/var/web/192.168.1.10/zi` to the directory where you wish to install the files on your web server.
 
-##Other Modules/Libraries (dependencies)
+## Other Modules/Libraries (dependencies)
 
 Code in robot-trading-webapp is limited to creating a user interface for reviewing and changing simulation parameters, 
 and generating results in the form of graphs or a downloadable .zip package of simulation logs.
@@ -70,18 +70,18 @@ Significant modules, including modules authored by others, include:
 * [json-editor](https://www.npmjs.com/package/json-editor) User-interface manager configured via JSON Schema. 
 
 
-##Tests
+## Tests
 
 Most imported modules above has tests that can be run by running "npm test" in that module's directory.
 
 The top level code, which processes user input and displays the results, does not include automated tests at this time.
 
-##Copyright
+## Copyright
 
 Code authored herein is 
 
 Copyright 2016 Paul Brewer, Economic and Financial Technology Consulting LLC
 
-##License
+## License
 
 [The MIT License](https://github.com/DrPaulBrewer/robot-trading-webapp/blob/master/LICENSE.md)
