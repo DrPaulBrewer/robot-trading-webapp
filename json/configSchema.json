@@ -1,220 +1,40 @@
 {
-    "title": "Scenario",
+    "title": "Study",
     "type": "object",
     "default": {},
     "options": {
         "collapsed": false
     },
     "properties": {
-        "title": {
-            "type": "string",
-            "propertyOrder": 1,
-            "description": "short title to use in selection box",
-            "default": ""
-        },
-        "common": {
-            "title": "Common",
-            "type": "object",
-            "propertyOrder": 10,
-            "description": "settings common to all items in this scenario",
-            "properties":{
-                "periods":{
-                    "type": "number",
-                    "propertyOrder": 1,
-                    "description": "Number of Periods",
-                    "default": 10
-                },
-                "periodDuration":{
-                    "type": "number",
-                    "propertyOrder": 10,
-                    "description": "Period Duration (sec):",
-                    "default": 1000
-                },
-                "L": {
-                    "type": "number",
-                    "propertyOrder": 20,
-                    "description": "minimum price for zi Agent price generation",
-                    "default": 1
-                },
-                "H": {
-                    "type": "number",
-                    "propertyOrder": 30,
-                    "description": "maximum price for zi Agent price generation",
-                    "default": 200
-                },
-                "integer":{
-                    "type": "boolean",
-                    "propertyOrder": 40,
-                    "description": "Use integer prices",
-                    "default": true
-                },
-                "silent":{
-                    "type": "boolean",
-                    "propertyOrder": 50,
-                        "description": "false emits more console.log messages, true suppresses",
-                    "default": true
-                },
-                "version":{
-                    "type": "number",
-                    "propertyOrder":99999,
-                    "description": "schema version, do not change",
-                    "default": 1
-                }
-            }
-        },
-        "configurations": {
-            "title": "Robot Trading Comparison",
-            "type": "array",
-            "format": "tabs",
-            "default": [],
-            "propertyOrder": 20,
-            "options": {
-                "collapsed": false
-            },
-            "items":{
-                "type": "object",
-                "properties": {
-                    "titleReplace": {
-                        "type": "string",
-                        "propertyOrder": 1,
-                        "description": "Plot Title (replacement):"
-                    },
-                    "titleAppend": {
-                        "type": "string",
-                        "propertyOrder": 2,
-                        "description": "Plot Title (append):"
-                    },
-                    "titlePrepend": {
-                        "type": "string",
-                        "propertyOrder": 3,
-                        "description": "Plot Title (prepend):",
-                        "default": ""
-                    },
-                    "buyerValues": {
-                        "type": "array",
-                        "items": {
-                            "type": "number"
-                        },
-                        "format": "textarea",
-                        "flavor": "positiveNumber",
-                        "propertyOrder": 10,
-                        "description": "Aggregate Buyers Values",
-                        "default": [100,95,90,85,80,75,70,60,50,40,30,20,10]
-                    },
-                    "sellerCosts": {
-                        "type": "array",
-                        "items": {
-                            "type": "number"
-                        },
-                        "format": "textarea",
-                        "flavor": "positiveNumber",
-                        "propertyOrder": 20,
-                        "description": "Aggregate Sellers Costs",
-                        "default": [10,20,30,40,50,60,70,80,90,100]
-                    },
-                    "numberOfBuyers":{
-                        "type": "number",
-                        "propertyOrder": 30,
-                        "description": "Number of Buyers",
-                        "default": 13
-                    },
-                    "numberOfSellers":{
-                        "type": "number",
-                        "propertyOrder": 40,
-                        "description": "Number of Sellers",
-                        "default": 10
-                    },
-                    "buyerRate":{
-                        "type": "array",
-                        "items": {
-                            "type": "number"
-                        },
-                        "format": "textarea",
-                        "flavor": "positiveNumber",
-                        "propertyOrder": 50,
-                        "description": "Individual Buyer Poisson Arrival Rates (bids/sec per agent)",
-                        "default": [0.20]
-                    },
-                    "sellerRate":{
-                        "type": "array",
-                        "items": {
-                            "type": "number"
-                        },
-                        "format": "textarea",
-                        "flavor": "positiveNumber",
-                        "propertyOrder": 60,
-                        "description": "Individual Seller Poisson Arrival Rates (asks/sec per agent)",
-                        "default": [0.20]
-                    },
-                    "buyerAgentType": {
-                        "description": "Buyer Types to use in rotation when creating buyers",
-                        "propertyOrder": 70,
-                        "type": "array",
-                        "uniqueItems": false,
-                        "items": {
-                            "type": "string",
-                            "enum": ["ZIAgent","UnitAgent","OneupmanshipAgent","MidpointAgent","KaplanSniperAgent","HoarderAgent","TruthfulAgent"]
-                        },
-                        "format": "table",
-                        "default": ["ZIAgent"]
-                    },
-                    "sellerAgentType": {
-                        "description": "Seller Types to use in rotation when creating sellers",
-                        "propertyOrder": 80,
-                        "type": "array",
-                        "uniqueItems": false,
-                        "items": {
-                            "type": "string",
-                            "enum": ["ZIAgent","UnitAgent","OneupmanshipAgent","MidpointAgent","KaplanSniperAgent","TruthfulAgent"]
-                        },
-                        "format": "table",
-                        "default": ["ZIAgent"]
-                    },
-                    "keepPreviousOrders":{
-                        "type": "boolean",
-                        "propertyOrder": 90,
-                        "description": "true causes agents to not request cancellation/replacement of old orders with their new order, keeping the old orders.  Setting true will lead to setlement issues with zi traders; false submits 'cancel/replace' orders which first clear orders from the same agent",
-                        "default": false
-                    },
-                    "ignoreBudgetConstraint":{
-                        "type": "boolean",
-                        "propertyOrder": 100,
-                        "description": "false uses Marginal Cost / Marginal Value as limits for zi Agent random asks/bids; true ignores MC/MV and generates random asks/bids on [minPrice,maxPrice]",
-                        "default": false
-                    },
-                    "xMarket":{
-                        "type": "object",
-                        "propertyOrder": 110,
-                        "title": "advanced configuration options for X market",
-                        "properties": {
-                            "buySellBookLimit": {
-                                "type": "number",
-                                "propertyOrder": 10,
-                                "description": "0 = unlimited; otherwise, truncates buy book and sell book after each trade to N orders each side",
-                                "default": 0
-                            },
-                            "resetAfterEachTrade":{
-                                "type": "boolean",
-                                "propertyOrder": 20,
-                                "description": "reset the market, eliminating old orders, after each trade. use this, not buySellBookLimit, to completely clear books after each trade",
-                                "default": true
-                            },
-                            "buyImprove":{
-                                "type": "number",
-                                "propertyOrder": 30,
-                                "description": "0=off, no effect; 1=reject new buy orders priced less than or equal best buy order; 2=reject new orders that are priced lt or eq 2nd best buy order; ...",
-                                "default": 0
-                            },
-                            "sellImprove":{
-                                "type": "number",
-                                "propertyOrder": 40,
-                                "description": "0=off, no effect; 1=reject new sell orders priced greater than or equal best sell order; 2 = reject new orders priced gt or eq 2nd best sell order; ...",
-                                "default": 0
-                            }
-                        }
-                    }
-                }
-            }
-        }
+	"title": {
+	    "type": "string",
+	    "propertyOrder": 1,
+	    "description": "title (user defined description, notes)",
+	    "default": "change this title"
+	},
+	"qDemandedAtPriceZero": {
+	    "type": "number",
+	    "propertyOrder": 10,
+	    "description": "MARKET DEMAND: Quantty demanded by market at price of zero",
+	    "default": 500
+	},
+	"qDemandedAtPrice100": {
+	    "type": "number",
+	    "propertyOrder": 20,
+	    "description": "MARKET DEMAND: Quantity demanded by market at price of 100",
+	    "default": 50
+	},
+	"qSuppliedAtPriceZero": {
+	    "type": "number",
+	    "propertyOrder": 30,
+	    "description": "MARKET SUPPLY: Quantity supplied by market at price of zero",
+	    "default": 0
+	},
+	"qSuppliedAtPrice100": {
+	    "type": "number",
+	    "propertyOrder": 40,
+	    "description": "MARKET SUPPLY: Quantity supplied by market at price of 100",
+	    "default": 200
+	}
     }
 }

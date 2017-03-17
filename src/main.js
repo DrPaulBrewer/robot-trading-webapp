@@ -10,11 +10,13 @@ import * as SMRS from "single-market-robot-simulator";
 import * as VIZ from "single-market-robot-simulator-viz-plotly";
 import * as DB from "single-market-robot-simulator-db-local";
 import * as AF from "single-market-robot-simulator-app-framework";
+import clone from "clone";
 import {customViz} from './custom/customViz';
 import smallDataVisualsJSON from "../json/small-data-visuals.json!";
 import mediumDataVisualsJSON from "../json/medium-data-visuals.json!";
 import configSchema from "../json/configSchema.json!";
-import examplesHighLow from "../json/examples-highlow.json!";
+import base from "../json/base.json!";
+import example from "../json/example.json!";
 import packageJSON from "../package.json!";
 import behavior from "../json/app-click-behavior.json!";
 
@@ -48,9 +50,44 @@ const Visuals = {
 // set if unset
 
 DB.init(window.sessionStorage);
-DB.openList("saveList", [examplesHighLow]);
+DB.openList("saveList", [example]);
 
-const app = new AF.App({
+class EasyApp extends AF.App {
+
+    simulations(studyConfig){
+        const study = clone(base);
+        const demandDPDQ = 100/(studyConfig.qDemandedAtPrice100-studyConfig.qDemandedAtPriceZero);
+        const demandPAtQ1 = (1-studyConfig.qDemandedAtPriceZero)*demandDPDQ;
+        const supplyDPDQ = 100/(studyConfig.qSuppliedAtPrice100-studyConfig.qSuppliedAtPriceZero);
+        let v = demandPAtQ1;
+        const vs = study.configurations[0].buyerValues;
+        vs.length = 0;
+        let q = 1;
+        while ((v>0.0) && (q<10000)) {
+            vs[q-1] = v;
+            q += 1;
+            v += demandDPDQ;
+        }
+        const cs = study.configurations[0].sellerCosts;
+        cs.length = 0;
+        for(q=0;q<studyConfig.qSuppliedAtPriceZero;q++){
+            cs[q] = 1e-9;
+        }
+	let c=0;
+        for(q=studyConfig.qSuppliedAtPriceZero,c=supplyDPDQ;q<studyConfig.qDemandedAtPriceZero;q++,c+=supplyDPDQ){
+            cs[q] = c;
+        }
+	study.common.H = Math.ceil(vs[0])+1;
+        return AF.makeClassicSimulations(study, this.SMRS);
+    }
+
+    getPeriods(){
+        return base.common.periods;
+    }
+    
+}
+
+const app = new EasyApp({
     SMRS,
     DB,
     Visuals,
@@ -58,7 +95,7 @@ const app = new AF.App({
     saveList: "saveList",
     trashList: "trashList",
     editorConfigSchema: configSchema,
-    editorStartValue: examplesHighLow
+    editorStartValue: example
 });
 
 // with DB from single-robot-market-simulator-db-webdismay use $('#uploadButton').click(()=>(app.uploadData()));
