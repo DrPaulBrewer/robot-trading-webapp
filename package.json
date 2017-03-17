@@ -33,7 +33,7 @@
       "json-editor": "npm:json-editor@^0.7.27",
       "json-editor-positive-number-array-textarea": "npm:json-editor-positive-number-array-textarea@^0.4.0",
       "single-market-robot-simulator": "npm:single-market-robot-simulator@^0.61.0",
-      "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@^1.1",
+      "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@^2",
       "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@^1.0.0",
       "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@^0.6.0",
       "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@^0.8.0",
