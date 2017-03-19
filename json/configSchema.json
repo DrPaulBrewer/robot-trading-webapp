@@ -1,5 +1,5 @@
 {
-    "title": "Scenario",
+    "title": "Study",
     "type": "object",
     "default": {},
     "options": {
@@ -16,7 +16,7 @@
             "title": "Common",
             "type": "object",
             "propertyOrder": 10,
-            "description": "settings common to all items in this scenario",
+            "description": "settings common to all items in this study",
             "properties":{
                 "periods":{
                     "type": "number",
