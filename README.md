@@ -1,9 +1,10 @@
+# robot-trading-webapp
+
 [![Build Status](https://travis-ci.org/DrPaulBrewer/robot-trading-webapp.svg?branch=master)](https://travis-ci.org/DrPaulBrewer/robot-trading-webapp)
-robot-trading-webapp
-=======
+
 Browser-based numerical market experiment webapp for agent-based computational economics and finance.  
 
-##Trying out the software
+## Trying out the software
 
 Go to:    http://drpaulbrewer.github.io/robot-trading-webapp
 
