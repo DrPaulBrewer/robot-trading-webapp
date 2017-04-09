@@ -20,11 +20,11 @@ System.config({
     "json": "github:systemjs/plugin-json@0.1.2",
     "json-editor": "npm:json-editor@0.7.28",
     "json-editor-positive-number-array-textarea": "npm:json-editor-positive-number-array-textarea@0.4.0",
-    "single-market-robot-simulator": "npm:single-market-robot-simulator@0.61.0",
-    "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@2.0.6",
+    "single-market-robot-simulator": "npm:single-market-robot-simulator@1.0.0",
+    "single-market-robot-simulator-app-framework": "npm:single-market-robot-simulator-app-framework@3.1.0",
     "single-market-robot-simulator-db-local": "npm:single-market-robot-simulator-db-local@1.0.0",
-    "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0",
-    "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@0.8.3",
+    "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@2.0.0",
+    "single-market-robot-simulator-viz-plotly": "npm:single-market-robot-simulator-viz-plotly@1.0.0",
     "systemjs/plugin-json": "github:systemjs/plugin-json@0.1.2",
     "whatwg-fetch": "npm:whatwg-fetch@1.1.1",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -110,7 +110,7 @@ System.config({
       "core-js": "npm:core-js@2.3.0",
       "es6-promise": "npm:es6-promise@3.0.2",
       "lie": "npm:lie@3.1.1",
-      "pako": "npm:pako@1.0.4",
+      "pako": "npm:pako@1.0.5",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "stream": "github:jspm/nodelibs-stream@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
@@ -119,18 +119,18 @@ System.config({
       "immediate": "npm:immediate@3.0.6",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:market-agents@0.91.0": {
-      "clone": "npm:clone@1.0.2",
+    "npm:market-agents@1.0.0": {
+      "clone": "npm:clone@2.1.1",
       "events": "github:jspm/nodelibs-events@0.1.1",
       "prob.js": "npm:prob.js@1.0.6",
       "random-js": "npm:random-js@1.0.8"
     },
-    "npm:market-engine@0.11.0": {
+    "npm:market-engine@1.0.0": {
       "events": "github:jspm/nodelibs-events@0.1.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:market-example-contingent@0.18.0": {
-      "market-engine": "npm:market-engine@0.11.0",
+    "npm:market-example-contingent@1.0.0": {
+      "market-engine": "npm:market-engine@1.0.0",
       "market-pricing": "npm:market-pricing@1.1.0",
       "partial-index": "npm:partial-index@1.7.2",
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -141,7 +141,7 @@ System.config({
     "npm:os-browserify@0.1.2": {
       "os": "github:jspm/nodelibs-os@0.1.0"
     },
-    "npm:pako@1.0.4": {
+    "npm:pako@1.0.5": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
@@ -170,33 +170,38 @@ System.config({
       "stream-browserify": "npm:stream-browserify@1.0.0",
       "string_decoder": "npm:string_decoder@0.10.31"
     },
-    "npm:single-market-robot-simulator-app-framework@2.0.6": {
+    "npm:single-market-robot-simulator-app-framework@3.1.0": {
       "clone": "npm:clone@2.1.1",
-      "single-market-robot-simulator-openzip": "npm:single-market-robot-simulator-openzip@0.2.0",
-      "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@0.6.0"
+      "single-market-robot-simulator-openzip": "npm:single-market-robot-simulator-openzip@1.0.0",
+      "single-market-robot-simulator-savezip": "npm:single-market-robot-simulator-savezip@2.0.0",
+      "single-market-robot-simulator-study": "npm:single-market-robot-simulator-study@1.0.0"
     },
     "npm:single-market-robot-simulator-db-local@1.0.0": {
       "deep-equal": "npm:deep-equal@1.0.1"
     },
-    "npm:single-market-robot-simulator-openzip@0.2.0": {
+    "npm:single-market-robot-simulator-openzip@1.0.0": {
       "jszip": "npm:jszip@3.1.3",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:single-market-robot-simulator-savezip@0.6.0": {
+    "npm:single-market-robot-simulator-savezip@2.0.0": {
       "filesaver.js-npm": "npm:filesaver.js-npm@1.0.1",
-      "jszip": "npm:jszip@3.1.3"
+      "jszip": "npm:jszip@3.1.3",
+      "single-market-robot-simulator-study": "npm:single-market-robot-simulator-study@1.0.0"
     },
-    "npm:single-market-robot-simulator-viz-plotly@0.8.3": {
+    "npm:single-market-robot-simulator-study@1.0.0": {
+      "clone": "npm:clone@2.1.1"
+    },
+    "npm:single-market-robot-simulator-viz-plotly@1.0.0": {
       "d3-array": "npm:d3-array@0.8.1",
       "stepify-plotly": "npm:stepify-plotly@1.0.6",
       "transpluck": "npm:transpluck@1.0.2"
     },
-    "npm:single-market-robot-simulator@0.61.0": {
+    "npm:single-market-robot-simulator@1.0.0": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "market-agents": "npm:market-agents@0.91.0",
-      "market-example-contingent": "npm:market-example-contingent@0.18.0",
+      "market-agents": "npm:market-agents@1.0.0",
+      "market-example-contingent": "npm:market-example-contingent@1.0.0",
       "positive-number-array": "npm:positive-number-array@1.2.0",
-      "simple-isomorphic-logger": "npm:simple-isomorphic-logger@1.1.3"
+      "simple-isomorphic-logger": "npm:simple-isomorphic-logger@1.4.1"
     },
     "npm:stepify-plotly@1.0.6": {
       "clone": "npm:clone@1.0.2"
