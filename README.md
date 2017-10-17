@@ -1,5 +1,7 @@
 # robot-trading-webapp
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/DrPaulBrewer/robot-trading-webapp.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/DrPaulBrewer/robot-trading-webapp.svg?branch=master)](https://travis-ci.org/DrPaulBrewer/robot-trading-webapp)
 
 Browser-based numerical market experiment webapp for agent-based computational economics and finance.  
